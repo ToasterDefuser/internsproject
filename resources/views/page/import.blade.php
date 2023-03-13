@@ -1,12 +1,12 @@
 @extends('layouts.default')
 @section('content')
 <div class="form">
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="/" method="post" enctype="multipart/form-data">
         <label for="file"><h3>Wybierz plik do importu</h3></label>
         <input type="file" id="input_file" accept=".xml">
         <input type="submit" value="Wyslij" name="submit" id="submit_btn" disabled>
    </form>
-   <textarea id="json_text" cols=100 rows=20 style="display: none">
+   <textarea id="json_text" cols=100 rows=20 style="display: none" disabled>
 
    </textarea>
 </div>
