@@ -28,6 +28,18 @@
             $connection = array("Database"=>$baza,"TrustServerCertificate"=>true);
             $conn = sqlsrv_connect( $serverName, $connection);
 
+            $invoiceLines = $plik->Invoice-Lines;
+            $invoiceSummary = $plik->Invoice-Summary;
+
+            $totalLines = (int)$invoiceSummary->TotalLines;
+            $numberOfLines = count($invoiceLines->Line);
+
+            if($totalLines !== $numberOfLines){
+                echo "Plik ma niepoprawne wartości!";
+            }
+
+
+
             if( $conn ) {
                 echo "Connection established.<br />";
            }else{
