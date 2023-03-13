@@ -17,14 +17,17 @@
 
             echo "<p>Pomyślnie zaimportowano plik</p>";
             echo "<p>Zawartość pliku: </p>";
-
+            //xml => json
             $plik = simplexml_load_file($_FILES['file']['tmp_name']);
             $convert = json_encode($plik,JSON_PRETTY_PRINT);
             echo $convert;
-
-            $serverName = "TERG/msus01\\ITDEV02";
-            $connection = array("Database"=>"InternsProject");
+            echo"<br><br>";
+            //połączenie z ssms
+            $serverName = "ITDEV02";
+            $baza = "InternsProject";
+            $connection = array("Database"=>$baza,"TrustServerCertificate"=>true);
             $conn = sqlsrv_connect( $serverName, $connection);
+
             if( $conn ) {
                 echo "Connection established.<br />";
            }else{
@@ -33,9 +36,9 @@
            }
 
         }else{
-            echo "Plik nie jest odpowiedni";
+            echo "Plik jest nieodpowiedni";
         }
-        phpinfo();
+
     }
     
 
