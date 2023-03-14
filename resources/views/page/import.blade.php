@@ -1,10 +1,11 @@
 @extends('layouts.default')
 @section('content')
 <div class="form">
-    <form action="/" method="post" enctype="multipart/form-data">
+    <form action="/xml" method="post" enctype="multipart/form-data">\
+        @csrf
         <label for="file"><h3>Wybierz plik do importu</h3></label>
-        <input type="file" id="input_file" accept=".xml">
-        <input type="submit" value="Wyslij" name="submit" id="submit_btn" disabled>
+        <input type="file" id="input_file" accept=".xml" name="xml_file">
+        <input type="submit" value="Wyslij" name="submit" id="submit_btn">
    </form>
    <textarea id="json_text" cols=100 rows=20 style="display: none" disabled>
 
