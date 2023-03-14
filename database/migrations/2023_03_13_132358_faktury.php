@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('Kontrahent');
             $table->string('Faktura');
-            $table->string('Data wystawienia');
-            $table->timestamps('Data wpływu');
-            $table->string('Kwota Netto');
-            $table->string('Kwota Brutto');
-            $table->string('Zamówienie');
+            $table->string('DataWystawienia');
+            $table->string('KwotaNetto');
+            $table->string('KwotaBrutto');
+            $table->string('Zamowienie');
         });
     }
 
