@@ -20,8 +20,7 @@ class ImportXml extends Controller
             return;  
         }
 
-        function validate($path)
-        {   
+        function validate($path){  
                 $plik = simplexml_load_file($path);
                 //połączenie z ssms
                 $serverName = "ITDEV02";
@@ -81,6 +80,12 @@ class ImportXml extends Controller
 
                 if( $conn ) {
                     echo "Connection established.<br />";
+
+
+                    // uzupełnienie bazy danych
+                    
+
+
             }else{
                     echo "Connection could not be established.<br />";
                     die( print_r( sqlsrv_errors(), true));

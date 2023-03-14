@@ -1,17 +1,18 @@
 body{
     padding: 0;
     margin: 0;
-
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0ebd8;
     min-height: 100vh;
     display:flex; 
     flex-direction:column;
 }
 
 nav {
-    background-color: yellow;
-    color: gray;
+    background-color: #3e5c76;
+    color: #c2dfe3;
 
-    display: flex;
+    display: flex;  
     align-items: center;
     justify-content: center;
 
@@ -23,7 +24,7 @@ main{
 }
 
 footer{
-    background-color: black;
+    background-color: #0D1321;
     width: 100vw;
     height: 5vh;
 }
@@ -31,7 +32,7 @@ footer{
 .leftMenu {
     height: 87vh;
     width: 200px;
-    background-color: gray;
+    background-color: #748CAB;
     color: white;
 
     display: flex;
@@ -53,5 +54,26 @@ a{
 }
 
 nav a {
-    color: gray;
+    color: #f0ebd8;
 }
+
+
+@media only screen and (max-width: 600px) {
+    main{
+        display: flex;
+        flex-direction: column;
+    }
+    .leftMenu{
+        width: 100vw;
+        height: 18vh;
+    }
+    .leftMenu > *{
+        border-bottom: 2px solid white;
+    }
+    .form{
+        width: 100vw;
+    }
+    textarea{
+        width: calc(100vw - 10px);
+    }
+  }
