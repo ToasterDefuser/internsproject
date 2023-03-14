@@ -1,0 +1,20 @@
+﻿<Document-Invoice>
+   
+    <Invoice-Summary>
+        <TotalLines>2</TotalLines>
+        <TotalNetAmount>13079.17</TotalNetAmount>
+        <TotalTaxableBasis>13079.17</TotalTaxableBasis>
+        <TotalTaxAmount>3008.21</TotalTaxAmount>
+        <TotalGrossAmount>16087.38</TotalGrossAmount>
+        <Tax-Summary>
+            <Tax-Summary-Line>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>3008.21</TaxAmount>
+                <TaxableBasis>13079.17</TaxableBasis>
+                <TaxableAmount>13079.17</TaxableAmount>
+                <GrossAmount>16087.38</GrossAmount>
+            </Tax-Summary-Line>
+        </Tax-Summary>
+    </Invoice-Summary>
+</Document-Invoice>
