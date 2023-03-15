@@ -18,6 +18,6 @@ class Buyer extends Model
     ];
     public $timestamps = false;
     public function invoice(){
-        return $this.belongsTo(Invoice::class);
+        return $this.hasMany(Invoice::class);
     }
 }

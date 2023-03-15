@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100vw - 200px);
+    min-width: 100%;
     flex-direction: column;
 }
 
@@ -15,7 +15,7 @@ form{
 }
 
 .btn-submit{
-    background-color: #748CAB; /* Green */
+    background-color: #4188db; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -27,7 +27,7 @@ form{
 }
 
 .btn-import{
-    background-color: #748CAB; /* Green */
+    background-color: #4188db; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -44,4 +44,7 @@ input[type="file"] {
 .btn-submit:disabled {
     background: #dddddd;
     cursor:default;
+  }
+  textarea{
+    width: 98%;
   }

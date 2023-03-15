@@ -22,5 +22,8 @@ Route::get('/test', function () {
 Route::get('/import', function () {
     return view('page/import');
 });
+Route::get('/view', function () {
+    return view('page/showData');
+});
 
 Route::post('/xml', "App\HTTP\Controllers\ImportXml");
