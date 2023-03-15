@@ -38,8 +38,8 @@ return new class extends Migration
             $table->foreign('seller_id')->references('id')->on('sellers');
 
             //rel with items
-            $table->unsignedBigInteger('items_id')->nullable();
-            $table->foreign('items_id')->references('id')->on('items');
+            //$table->unsignedBigInteger('items_id')->nullable();
+            //$table->foreign('items_id')->references('id')->on('items');
             $table->timestamps();
 
         });
@@ -51,9 +51,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('invoices');
-        dropConstrainedForeignId('OrderId');
-        dropConstrainedForeignId('DeliveryId');
-        dropConstrainedForeignId('BuyerId');
-        dropConstrainedForeignId('SellerId');
+        dropConstrainedForeignId('order_id');
+        dropConstrainedForeignId('delivery_id');
+        dropConstrainedForeignId('buyer_id');
+        dropConstrainedForeignId('seller_id');
     }
 };

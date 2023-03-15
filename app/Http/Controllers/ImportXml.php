@@ -111,7 +111,7 @@ class ImportXml extends Controller
                         'InvoicePaymentTerms' => $xml_header->InvoicePaymentTerms,
                         'DocumentFunctionCode' => $xml_header->DocumentFunctionCode,
                     ]);
-                    $invoice->save();
+                    
 
                     $order = new Order([
                         'BuyerOrderNumber' => $xml_order->BuyerOrderNumber,
@@ -154,6 +154,12 @@ class ImportXml extends Controller
 
                     $xml_item_quantity = $plik->{"Invoice-Summary"}->TotalLines;
 
+                    $invoice->order()->associate($order);
+                    $invoice->delivery()->associate($delivery);
+                    $invoice->buyer()->associate($buyer);
+                    $invoice->seller()->associate($seller);
+                    $invoice->save();
+
                     foreach($plik->{"Invoice-Lines"}->Line as $line){
                         $xml_item = $line->{"Line-Item"};
                         $item = new Item([
@@ -176,12 +182,6 @@ class ImportXml extends Controller
                         $invoice->items()->attach($item, ['quantity' => $xml_item_quantity, 'invoice_id'=>$invoice->id]);
                     }
 
-                    $invoice->order()->associate($order);
-                    $invoice->delivery()->associate($delivery);
-                    $invoice->buyer()->associate($buyer);
-                    $invoice->seller()->associate($seller);
-                    
-                    //$order->invoice()->save($invoice);
                     echo"<br><br> Zapisano dane";
 
                 }else{
