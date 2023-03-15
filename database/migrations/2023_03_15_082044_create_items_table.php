@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Lines', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
-
-            // header
-            $table->string('InvoiceNumber');
-
             $table->string('LineNumber');
             $table->string('EAN');
             $table->string('SupplierItemCode');
@@ -31,7 +27,6 @@ return new class extends Migration
             $table->string('TaxCategoryCode');
             $table->string('TaxAmount');
             $table->string('NetAmount');
-
         });
     }
 
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Lines');
+        Schema::dropIfExists('items');
     }
 };

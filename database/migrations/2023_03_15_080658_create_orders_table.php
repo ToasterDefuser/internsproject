@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('faktury', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('Kontrahent');
-            $table->string('Faktura');
-            $table->string('DataWystawienia');
-            $table->string('KwotaNetto');
-            $table->string('KwotaBrutto');
-            $table->string('Zamowienie');
+            $table->string('BuyerOrderNumber');
+            $table->string('BuyerOrderDate');
         });
     }
 
@@ -27,6 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('faktury');
+        Schema::dropIfExists('orders');
+        dropConstrainedForeignId('invoice_id');
     }
 };

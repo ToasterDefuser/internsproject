@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Delivery;
+use App\Models\Seller;
+use App\Models\Buyer;
+use App\Models\Item;
 
 class ImportXml extends Controller
 {
@@ -72,24 +78,115 @@ class ImportXml extends Controller
                 
                 if($validFile){
                     echo"<br><br> Plik jest odpowiedni";
+                    /*
+                    $invoice = Invoice::create([
+                        'InvoiceNumber' => '1',
+                        'InvoiceDate' => '2',
+                        'SalesDate' => '3',
+                        'InvoiceCurrency'=> '4',
+                        'InvoicePaymentDueDate' => '5',
+                        'InvoicePaymentTerms' => '6',
+                        'DocumentFunctionCode' => '7',
+                    ]);
+                    $order = new Order([
+                        'BuyerOrderNumber' => '8',
+                        'BuyerOrderDate' => '9',
+                    ]);
+
+                    $invoice->order()->save($order);
+                    */
+
+                    $xml_header = $plik->{"Invoice-Header"};
+                    $xml_order = $xml_header->Order;
+                    $xml_delivery = $xml_header->Delivery;
+                    $xml_buyer = $plik->{"Invoice-Parties"}->Buyer;
+                    $xml_seller = $plik->{"Invoice-Parties"}->Seller;
+
+                    $invoice = new Invoice([
+                        'InvoiceNumber' => $xml_header->InvoiceNumber,
+                        'InvoiceDate' => $xml_header->InvoiceDate,
+                        'SalesDate' =>  $xml_header->SalesDate,
+                        'InvoiceCurrency'=> $xml_header->InvoiceCurrency,
+                        'InvoicePaymentDueDate' => $xml_header->InvoicePaymentDueDate,
+                        'InvoicePaymentTerms' => $xml_header->InvoicePaymentTerms,
+                        'DocumentFunctionCode' => $xml_header->DocumentFunctionCode,
+                    ]);
+                    $invoice->save();
+
+                    $order = new Order([
+                        'BuyerOrderNumber' => $xml_order->BuyerOrderNumber,
+                        'BuyerOrderDate' => $xml_order->BuyerOrderDate,
+                    ]);
+                    $order->save();
+
+
+                    $delivery = new Delivery([
+                        'DeliveryLocationNumber' => $xml_delivery->DeliveryLocationNumber,
+                        'DeliveryDate' => $xml_delivery->DeliveryDate,
+                        'DespatchNumber' => $xml_delivery->DespatchNumber
+                    ]);
+                    $delivery->save();
+
+
+                    $buyer = new Buyer([
+                        'ILN' => $xml_buyer->ILN,
+                        'TaxID' => $xml_buyer->TaxID,
+                        'Name' => $xml_buyer->Name,
+                        'StreetAndNumber' => $xml_buyer->StreetAndNumber,
+                        'CityName' => $xml_buyer->CityName,
+                        'PostalCode' => $xml_buyer->PostalCode,
+                        'Country' => $xml_buyer->Country
+                    ]);
+                    $buyer->save();
+
+                    $seller = new Seller([
+                        'ILN' => $xml_seller->ILN,
+                        'TaxID' => $xml_seller->TaxID,
+                        'AccountNumber' => $xml_seller->AccountNumber,
+                        'CodeByBuyer' => $xml_seller->CodeByBuyer,
+                        'Name' => $xml_seller->Name,
+                        'StreetAndNumber' => $xml_seller->StreetAndNumber,
+                        'CityName' => $xml_seller->CityName,
+                        'PostalCode' => $xml_seller->PostalCode,
+                        'Country' => $xml_seller->Country
+                    ]);
+                    $seller->save();
+
+                    $xml_item_quantity = $plik->{"Invoice-Summary"}->TotalLines;
+
+                    foreach($plik->{"Invoice-Lines"}->Line as $line){
+                        $xml_item = $line->{"Line-Item"};
+                        $item = new Item([
+                            'LineNumber' => $xml_item->LineNumber,
+                            'EAN' => $xml_item->EAN,
+                            'SupplierItemCode' => $xml_item->SupplierItemCode,
+                            'ItemDescription' => $xml_item->ItemDescription,
+                            'ItemType' => $xml_item->ItemType,
+                            'InvoiceQuantity' => $xml_item->InvoiceQuantity,
+                            'UnitOfMeasure' => $xml_item->UnitOfMeasure,
+                            'InvoiceUnitPacksize' => $xml_item->InvoiceUnitPacksize,
+                            'PackItemUnitOfMeasure' => $xml_item->PackItemUnitOfMeasure,
+                            'InvoiceUnitNetPrice' => $xml_item->InvoiceUnitNetPrice,
+                            'TaxRate' => $xml_item->TaxRate,
+                            'TaxCategoryCode' => $xml_item->TaxCategoryCode,
+                            'TaxAmount' => $xml_item->TaxAmount,
+                            'NetAmount' => $xml_item->NetAmount
+                        ]);
+                        $item->save();
+                        $invoice->items()->attach($item, ['quantity' => $xml_item_quantity, 'invoice_id'=>$invoice->id]);
+                    }
+
+                    $invoice->order()->associate($order);
+                    $invoice->delivery()->associate($delivery);
+                    $invoice->buyer()->associate($buyer);
+                    $invoice->seller()->associate($seller);
+                    
+                    //$order->invoice()->save($invoice);
+                    echo"<br><br> Zapisano dane";
+
                 }else{
                     echo"<br><br> Plik <b>nie</b> jest odpowiedni";
-
                 }
-                echo"<br><br>";
-
-                if( $conn ) {
-                    echo "Connection established.<br />";
-
-
-                    // uzupełnienie bazy danych
-                    
-
-
-            }else{
-                    echo "Connection could not be established.<br />";
-                    die( print_r( sqlsrv_errors(), true));
-            }
         }
         validate($request->file("xml_file")->path());
         
