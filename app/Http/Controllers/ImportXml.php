@@ -186,7 +186,7 @@ class ImportXml extends Controller
                 }
         }
         $validate = validate($request->file("xml_file")->path());
-        if($validate == true){
+        if($validate === true){
             return redirect()->route('view');
         }else{
             return redirect()->route('import')->with(['alert' => $validate]);
