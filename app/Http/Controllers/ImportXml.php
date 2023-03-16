@@ -17,14 +17,12 @@ class ImportXml extends Controller
 
         // sprawdzenie czy przesłano plik w formularzu
         if(null === $xml_file = $request->file("xml_file")){
-            echo "Brak pliku";
-            return;
+            return "Brak pliku";
         }
 
-        // sprawdzenie czy plik jest formatu XML
+        // sprawdzenie czy plik jest w formacie XML
         if($request->file("xml_file")->getClientOriginalExtension() !== "xml"){
-            echo "Plik nie jest formatu XMl";
-            return;  
+            return "Plik nie jest w formacie XMl";  
         }
 
         function validate($path){  
@@ -35,8 +33,7 @@ class ImportXml extends Controller
                 
                 // sprawdzenie czy plik zawiera linie "Invoice-Lines"
                 if(!isset($plik->{"Invoice-Lines"})){
-                    echo 'Brak lini "Invoice-Lines" w pliku';
-                    return;
+                    return 'Brak lini "Invoice-Lines" w pliku';
                 }
 
                 //lines
@@ -82,7 +79,7 @@ class ImportXml extends Controller
                 }
                 
                 if($validFile){
-                    echo"<br><br> Plik jest odpowiedni";
+                    // plik jest odpowiedni
 
                     $xml_header = $plik->{"Invoice-Header"};
                     $xml_order = $xml_header->Order;
