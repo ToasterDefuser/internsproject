@@ -23,7 +23,9 @@ class Item extends Model
         'TaxAmount',
         'NetAmount'
     ];
+    
     public $timestamps = false;
+
     public function invoice(){
         return $this.belongsToMany(Invoice::class);
     }

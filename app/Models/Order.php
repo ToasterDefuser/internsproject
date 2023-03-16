@@ -11,7 +11,9 @@ class Order extends Model
         'BuyerOrderNumber',
         'BuyerOrderDate'
     ];
+    
     public $timestamps = false;
+
     public function invoice(){
         return $this.hasMany(Invoice::class);
     }

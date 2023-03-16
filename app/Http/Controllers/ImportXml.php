@@ -28,13 +28,8 @@ class ImportXml extends Controller
 
         function validate($path){  
                 $plik = simplexml_load_file($path);
-                //połączenie z ssms
-                $serverName = "ITDEV02";
-                $baza = "InternsProject";
-                $connection = array("Database"=>$baza,"TrustServerCertificate"=>true);
-                $conn = sqlsrv_connect( $serverName, $connection);
                 
-                    //walidacja
+                //walidacja
                 $validFile = true;
                 
                 // sprawdzenie czy plik zawiera linie "Invoice-Lines"
@@ -78,29 +73,13 @@ class ImportXml extends Controller
                 
                 if($validFile){
                     echo"<br><br> Plik jest odpowiedni";
-                    /*
-                    $invoice = Invoice::create([
-                        'InvoiceNumber' => '1',
-                        'InvoiceDate' => '2',
-                        'SalesDate' => '3',
-                        'InvoiceCurrency'=> '4',
-                        'InvoicePaymentDueDate' => '5',
-                        'InvoicePaymentTerms' => '6',
-                        'DocumentFunctionCode' => '7',
-                    ]);
-                    $order = new Order([
-                        'BuyerOrderNumber' => '8',
-                        'BuyerOrderDate' => '9',
-                    ]);
-
-                    $invoice->order()->save($order);
-                    */
 
                     $xml_header = $plik->{"Invoice-Header"};
                     $xml_order = $xml_header->Order;
                     $xml_delivery = $xml_header->Delivery;
                     $xml_buyer = $plik->{"Invoice-Parties"}->Buyer;
                     $xml_seller = $plik->{"Invoice-Parties"}->Seller;
+                    $xml_item_quantity = $plik->{"Invoice-Summary"}->TotalLines;
 
                     $invoice = new Invoice([
                         'InvoiceNumber' => $xml_header->InvoiceNumber,
@@ -118,7 +97,7 @@ class ImportXml extends Controller
                         'BuyerOrderDate' => $xml_order->BuyerOrderDate,
                     ]);
                     $order->save();
-
+                    $invoice->order()->associate($order);
 
                     $delivery = new Delivery([
                         'DeliveryLocationNumber' => $xml_delivery->DeliveryLocationNumber,
@@ -126,7 +105,7 @@ class ImportXml extends Controller
                         'DespatchNumber' => $xml_delivery->DespatchNumber
                     ]);
                     $delivery->save();
-
+                    $invoice->delivery()->associate($delivery);
 
                     $buyer = new Buyer([
                         'ILN' => $xml_buyer->ILN,
@@ -138,6 +117,7 @@ class ImportXml extends Controller
                         'Country' => $xml_buyer->Country
                     ]);
                     $buyer->save();
+                    $invoice->buyer()->associate($buyer);
 
                     $seller = new Seller([
                         'ILN' => $xml_seller->ILN,
@@ -151,13 +131,8 @@ class ImportXml extends Controller
                         'Country' => $xml_seller->Country
                     ]);
                     $seller->save();
-
-                    $xml_item_quantity = $plik->{"Invoice-Summary"}->TotalLines;
-
-                    $invoice->order()->associate($order);
-                    $invoice->delivery()->associate($delivery);
-                    $invoice->buyer()->associate($buyer);
                     $invoice->seller()->associate($seller);
+                    
                     $invoice->save();
 
                     foreach($plik->{"Invoice-Lines"}->Line as $line){

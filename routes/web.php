@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('page/home');
 });
-Route::get('/test', function () {
-    return view('page/test');
-});
 Route::get('/import', function () {
     return view('page/import');
 });

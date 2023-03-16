@@ -16,7 +16,9 @@ class Buyer extends Model
         'PostalCode',
         'Country'
     ];
+    
     public $timestamps = false;
+
     public function invoice(){
         return $this.hasMany(Invoice::class);
     }

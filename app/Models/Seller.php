@@ -18,7 +18,9 @@ class Seller extends Model
         'PostalCode',
         'Country'
     ];
+
     public $timestamps = false;
+    
     public function invoice(){
         return $this.belongsTo(Invoice::class);
     }
