@@ -15,8 +15,8 @@
         <input type="file" id="input_file" accept=".xml" name="xml_file" class="btn-import">
         <input type="submit" value="Zapisz" name="submit" id="submit_btn" class="btn-submit" disabled>
    </form>
-   <textarea id="json_text" cols=100 rows=20 style="display: none" disabled>
-
+   <div id="textAreaDiv"></div>
+    
    </textarea>
 </div>
 <script>
@@ -71,8 +71,9 @@
     
     const input_file = document.getElementById("input_file");
     input_file.addEventListener("change", () => {
+        //<textarea id="json_text" cols=100 rows=20 style="display: none" disabled>
 
-        const file = input_file.files[0];
+        let file = input_file.files[0];
 
         // zmiana wartości przyciska
         document.getElementById("label_input_file").innerHTML = file.name
@@ -81,14 +82,24 @@
         reader.onload = function(e)
         { 
             let xml2text = e.target.result
-            var parser = new DOMParser();
-            var xml = parser.parseFromString(xml2text, "text/xml");
-            const json = xmlToJson(xml)
-
+            let parser = new DOMParser();
+            let xml = parser.parseFromString(xml2text, "text/xml");
+            let json = xmlToJson(xml)
+            
             let json2 = JSON.stringify(json);
-            let jsonArea = document.getElementById("json_text")
-            jsonArea.innerHTML = json2
-            jsonArea.style.display = "block"
+            
+            const parentElement = document.querySelector('#textAreaDiv')
+            const existingTextArea = document.querySelector("#json_text")
+            if(existingTextArea){
+                parentElement.removeChild(existingTextArea)
+            }
+            const textArea = document.createElement('textarea');
+            textArea.cols = 100;
+            textArea.rows = 20;
+            textArea.disabled = true
+            textArea.id = 'json_text';
+            textArea.value = json2;
+            parentElement.appendChild(textArea);
             jsonFormat()
             document.getElementById("submit_btn").removeAttribute('disabled');
         };
