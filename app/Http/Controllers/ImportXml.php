@@ -170,13 +170,14 @@ class ImportXml extends Controller
                     }
 
                     echo"<br><br> Zapisano dane";
+                    //return redirect('/import');
 
                 }else{
                     echo"<br><br> Plik <b>nie</b> jest odpowiedni";
                 }
         }
         validate($request->file("xml_file")->path());
-        
+        return redirect()->route('dane');
         
     }
 }
