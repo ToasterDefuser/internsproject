@@ -37,7 +37,8 @@ footer{
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    position: sticky;
+    top: 0;
     align-items: center;
 }
 
@@ -48,7 +49,16 @@ h1{
 a{
     text-decoration: none;
 }
+.leftMenuBox{
+    height: 100vh;
+    position: sticky;
+    top: 0;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .leftMenu a {
     color: white;
 }
