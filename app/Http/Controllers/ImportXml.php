@@ -43,6 +43,8 @@ class ImportXml extends Controller
                 $invoiceLines = count($plik->{"Invoice-Lines"}->Line);
                 $totalLines = (int)$plik->{"Invoice-Summary"}->TotalLines;
 
+
+
                 //Total Values + net amount
                 $totalNetAmount = (float)$plik->{"Invoice-Summary"}->TotalNetAmount;
                 $SumNetAmount = 0;
@@ -53,6 +55,8 @@ class ImportXml extends Controller
                     $SumTaxAmount += (float)$line->{"Line-Item"}->TaxAmount;
                 }
 
+
+
                 //taxAmount
                 $totalTaxAmount = (float)$plik->{"Invoice-Summary"}->TotalTaxAmount;
 
@@ -61,14 +65,19 @@ class ImportXml extends Controller
                 }
                 /*Total Gross - if statement powyzej sprawdza czy suma net amount i suma tax amount jest poprawna,
                 zamiast robić kolejną pętlę która sumuje wartości i porównuje z totalGrossAmount, szybciej jest zwykle
-                porównać czy totalNet i totalTax jest równa totalGross, jeżeli występuje błąd w totalTax lub TotalNet
+                porównać czy suma totalNet i totalTax jest równa totalGross, jeżeli występuje błąd w totalTax lub TotalNet
                 to wynik i tak będzie taki sam - $validFile równe false
                 */
 
                 $totalGrossAmount = (float)$plik->{"Invoice-Summary"}->TotalGrossAmount;
                 $sum = $totalNetAmount + $totalTaxAmount;
-                                                //floating point precision
-                if(abs($sum-$totalGrossAmount) > 0.00001){
+                $SumarryGrossAmount = (float)$plik->{"Invoice-Summary"}->{"Tax-Summary"}->{"Tax-Summary-Line"}->GrossAmount;
+                $TaxableBasis = (float)$plik->{"Invoice-Summary"}->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxableBasis;
+                $TotalTaxableBasis = (float)$plik->{"Invoice-Summary"}->TotalTaxableBasis;
+                
+
+                //floating point precision
+                if(round($sum, 2) != round($totalGrossAmount, 2) || round($totalGrossAmount,2) != round($SumarryGrossAmount,2) || round($TaxableBasis,2) != round($TotalTaxableBasis,2)){
                     $validFile = false;
                 }
                 
@@ -170,14 +179,13 @@ class ImportXml extends Controller
                     }
 
                     echo"<br><br> Zapisano dane";
-                    //return redirect('/import');
 
                 }else{
                     echo"<br><br> Plik <b>nie</b> jest odpowiedni";
                 }
         }
         validate($request->file("xml_file")->path());
-        return redirect()->route('dane');
+        
         
     }
 }
