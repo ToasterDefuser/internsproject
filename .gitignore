@@ -1,0 +1,5 @@
+/vendor
+storage/framework/sessions/
+storage/framework/views/
+storage/logs/
+bootstrap/cache/config.php
