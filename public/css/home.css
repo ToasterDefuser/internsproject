@@ -88,6 +88,7 @@ nav a {
         border-top: 1px solid #ddd;
     }
     table td{
+        font-size: 10px;
         padding: 2px;
     }
   }
