@@ -8,9 +8,9 @@ Route::get('/', function () {
 });
 Route::get('/import', function () {
     return view('page/import');
-});
+})->name('import');
 Route::get('/view', function () {
     return view('page/showData');
-})->name('dane');
+})->name('view');
 
 Route::post('/xml', "App\HTTP\Controllers\ImportXml");

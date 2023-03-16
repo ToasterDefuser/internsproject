@@ -178,14 +178,19 @@ class ImportXml extends Controller
                         $invoice->items()->attach($item, ['quantity' => $xml_item_quantity, 'invoice_id'=>$invoice->id]);
                     }
 
-                    echo"<br><br> Zapisano dane";
+                    // walidacja poprawna
+                    return true;
 
                 }else{
-                    echo"<br><br> Plik <b>nie</b> jest odpowiedni";
+                    return 'Nieprawidłowy plik.';
                 }
         }
-        validate($request->file("xml_file")->path());
-        return redirect()->route('dane');
+        $validate = validate($request->file("xml_file")->path());
+        if($validate == true){
+            return redirect()->route('view');
+        }else{
+            return redirect()->route('import')->with(['alert' => $validate]);
+        }
         
     }
 }

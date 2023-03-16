@@ -1,5 +1,10 @@
 @extends('layouts.default')
 @section('content')
+@if(Session::has('alert'))
+    <script>
+        window.alert('{{ Session::get('alert')}}');
+    </script>
+@endif
 <div class="form">
     <form action="/xml" method="post" enctype="multipart/form-data">
         @csrf
