@@ -37,9 +37,10 @@ return new class extends Migration
             $table->unsignedBigInteger('seller_id')->nullable();
             $table->foreign('seller_id')->references('id')->on('sellers');
 
-            //rel with items
-            //$table->unsignedBigInteger('items_id')->nullable();
-            //$table->foreign('items_id')->references('id')->on('items');
+            // rel with Items
+            $table->unsignedBigInteger('summary_id')->nullable();
+            $table->foreign('summary_id')->references('id')->on('summaries');
+
             $table->timestamps();
 
         });
@@ -55,5 +56,6 @@ return new class extends Migration
         dropConstrainedForeignId('delivery_id');
         dropConstrainedForeignId('buyer_id');
         dropConstrainedForeignId('seller_id');
+        dropConstrainedForeignId('summary_id');
     }
 };

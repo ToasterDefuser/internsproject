@@ -31,4 +31,7 @@ class Invoice extends Model
     public function items(){
         return $this->belongsToMany(Item::class);
     }
+    public function summary(){
+        return $this->belongsTo(Summary::class);
+    }
 }

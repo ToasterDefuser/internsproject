@@ -9,6 +9,7 @@ use App\Models\Delivery;
 use App\Models\Seller;
 use App\Models\Buyer;
 use App\Models\Item;
+use App\Models\Summary;
 
 class ImportXml extends Controller
 {
@@ -79,7 +80,8 @@ class ImportXml extends Controller
                     $xml_delivery = $xml_header->Delivery;
                     $xml_buyer = $plik->{"Invoice-Parties"}->Buyer;
                     $xml_seller = $plik->{"Invoice-Parties"}->Seller;
-                    $xml_item_quantity = $plik->{"Invoice-Summary"}->TotalLines;
+                    $xml_summary = $plik->{"Invoice-Summary"};
+                    $xml_item_quantity = $xml_summary->TotalLines;
 
                     $invoice = new Invoice([
                         'InvoiceNumber' => $xml_header->InvoiceNumber,
@@ -132,6 +134,16 @@ class ImportXml extends Controller
                     ]);
                     $seller->save();
                     $invoice->seller()->associate($seller);
+
+                    $summary = new Summary([
+                        'TotalLines' => $xml_summary->TotalLines,
+                        'TotalNetAmount' => $xml_summary->TotalNetAmount,
+                        'TotalTaxableBasis' => $xml_summary->TotalTaxableBasis,
+                        'TotalTaxAmount' => $xml_summary->TotalTaxAmount,
+                        'TotalGrossAmount' => $xml_summary->TotalGrossAmount
+                    ]);
+                    $summary->save();
+                    $invoice->summary()->associate($summary);
                     
                     $invoice->save();
 

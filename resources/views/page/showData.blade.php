@@ -21,7 +21,7 @@
 
 
 
-               $invoices = Invoice::with('buyer')->get();
+               $invoices = Invoice::with('summary', 'buyer', 'order')->get();
                 foreach($invoices as $invoice){
                     echo "<tr>";
                         // kontrahent
@@ -33,9 +33,11 @@
                         // Data wpływu
                         echo "<td>".$invoice->created_at."</td>";
                         // Kwota netto
-                        //echo "<td>".$summary->TotalNetAmount."</td>";
+                        echo "<td>".$invoice->summary->TotalNetAmount."</td>";
                         // Kwota brutto
-                        //echo "<td>".$summary->TotalGrossAmount."</td>";
+                        echo "<td>".$invoice->summary->TotalGrossAmount."</td>";
+                        // Zamówienie
+                        echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
                     echo "</tr>";
                 }
 
