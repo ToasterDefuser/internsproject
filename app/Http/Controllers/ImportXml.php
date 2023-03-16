@@ -185,7 +185,7 @@ class ImportXml extends Controller
                 }
         }
         validate($request->file("xml_file")->path());
-        
+        return redirect()->route('dane');
         
     }
 }
