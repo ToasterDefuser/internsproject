@@ -74,7 +74,12 @@
         //<textarea id="json_text" cols=100 rows=20 style="display: none" disabled>
 
         let file = input_file.files[0];
-
+        let dotIndex = file.name.lastIndexOf(".")
+        if(file.name.substring(dotIndex + 1) !== "xml"){
+            alert("Plik nie jest w formacie XML")
+            input_file.value = '';
+            return
+        }
         // zmiana wartości przyciska
         document.getElementById("label_input_file").innerHTML = file.name
 
@@ -87,7 +92,7 @@
             let json = xmlToJson(xml)
             
             let json2 = JSON.stringify(json);
-            
+
             const parentElement = document.querySelector('#textAreaDiv')
             const existingTextArea = document.querySelector("#json_text")
             if(existingTextArea){
