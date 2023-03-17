@@ -84,7 +84,7 @@ nav a {
         height: 18vh;
         padding-bottom: 10px;
     }
-    .leftMenu > *{
+    .leftMenuBox > *{
         border-bottom: 2px solid white;
     }
     .form{
@@ -94,11 +94,27 @@ nav a {
         width: calc(100vw - 50px);
     }
     table{
-        font-size: 10px;
+        font-size: 9px;
         border-top: 1px solid #ddd;
     }
     table td{
-        font-size: 10px;
+        font-size: 9px;
         padding: 2px;
+    }
+    .table_div{
+        width: 100vw;
+    }
+  }
+  @media only screen and (max-width: 350px) {
+    table{
+        font-size: 7px;
+        border-top: 1px solid #ddd;
+    }
+    table td{
+        font-size: 7px;
+        padding: 0px;
+    }
+    .table_div{
+        width: 100vw;
     }
   }
