@@ -1,0 +1,97 @@
+﻿<Document-Invoice>
+    <Invoice-Header>
+        <InvoiceNumber>Fa/1111/32</InvoiceNumber>
+        <InvoiceDate>2023-03-22</InvoiceDate>
+        <SalesDate>2023-03-22</SalesDate>
+        <InvoiceCurrency>PLN</InvoiceCurrency>
+        <InvoicePaymentDueDate>2023-03-22</InvoicePaymentDueDate>
+        <InvoicePaymentTerms>60</InvoicePaymentTerms>
+        <DocumentFunctionCode>F</DocumentFunctionCode>
+        <Order>
+            <BuyerOrderNumber>BB02/22/07/06</BuyerOrderNumber>
+            <BuyerOrderDate>2023-07-06</BuyerOrderDate>
+        </Order>
+        <Delivery>
+            <DeliveryLocationNumber>9543646464</DeliveryLocationNumber>
+            <DeliveryDate>2023-07-06</DeliveryDate>
+            <DespatchNumber>ALF/1111116/32</DespatchNumber>
+        </Delivery>
+    </Invoice-Header>
+    <Invoice-Parties>
+        <Buyer>
+            <ILN>5757575757</ILN>
+            <TaxID>2324-434-44-33</TaxID>
+            <Name>GPD  S.A.</Name>
+            <StreetAndNumber>Testowa 17 A</StreetAndNumber>
+            <CityName>Warszawa</CityName>
+            <PostalCode>53-535</PostalCode>
+            <Country>PL</Country>
+        </Buyer>
+        <Seller>
+            <ILN>6436346346346</ILN>
+            <TaxID>45521-143-54-54</TaxID>
+            <AccountNumber>75 0000 0000 2343 5234 2435 343</AccountNumber>
+            <CodeByBuyer>Nie dotyczy</CodeByBuyer>
+            <Name>KP Sp.z o.o. </Name>
+            <StreetAndNumber>Kolorowa 8</StreetAndNumber>
+            <CityName>Wrocław</CityName>
+            <PostalCode>53-535</PostalCode>
+            <Country>PL</Country>
+        </Seller>
+    </Invoice-Parties>
+    <Invoice-Lines>
+        <Line>
+            <Line-Item>
+                <LineNumber>1</LineNumber>
+                <EAN>634634636</EAN>
+                <SupplierItemCode>AKS233 L</SupplierItemCode>
+                <ItemDescription>Komputer</ItemDescription>
+                <ItemType>CU</ItemType>
+                <InvoiceQuantity>1</InvoiceQuantity>
+                <UnitOfMeasure>PCE</UnitOfMeasure>
+                <InvoiceUnitPacksize>1</InvoiceUnitPacksize>
+                <PackItemUnitOfMeasure>PCE</PackItemUnitOfMeasure>
+                <InvoiceUnitNetPrice>10872.17</InvoiceUnitNetPrice>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>2500.60</TaxAmount>
+                <NetAmount>10872.17</NetAmount>
+            </Line-Item>
+        </Line>
+        <Line>
+            <Line-Item>
+                <LineNumber>2</LineNumber>
+                <EAN>2323433343</EAN>
+                <SupplierItemCode>AKS2122</SupplierItemCode>
+                <ItemDescription>Komputer</ItemDescription>
+                <ItemType>CU</ItemType>
+                <InvoiceQuantity>1</InvoiceQuantity>
+                <UnitOfMeasure>PCE</UnitOfMeasure>
+                <InvoiceUnitPacksize>1</InvoiceUnitPacksize>
+                <PackItemUnitOfMeasure>PCE</PackItemUnitOfMeasure>
+                <InvoiceUnitNetPrice>2207.00</InvoiceUnitNetPrice>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>507.61</TaxAmount>
+                <NetAmount>2207.00</NetAmount>
+            </Line-Item>
+        </Line>
+    </Invoice-Lines>
+    <Invoice-Summary>
+        <TotalLines>2</TotalLines>
+        <TotalNetAmount>13079.17</TotalNetAmount>
+        <TotalTaxableBasis>13079.17</TotalTaxableBasis>
+        <TotalTaxAmount>3008.21</TotalTaxAmount>
+        <TotalGrossAmount>16087.38</TotalGrossAmount>
+        <Tax-Summary>
+            <Tax-Summary-Line>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>3008.21</TaxAmount>
+                <TaxableBasis>13079.17</TaxableBasis>
+                <TaxableAmount>13079.17</TaxableAmount>
+                <GrossAmount>16087.38</GrossAmount>
+            </Tax-Summary-Line>
+        </Tax-Summary>
+    </Invoice-Summary>
+</Document-Invoice>
