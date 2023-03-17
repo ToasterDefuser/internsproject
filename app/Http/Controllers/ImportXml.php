@@ -33,7 +33,7 @@ class ImportXml extends Controller
                 
                 // sprawdzenie czy plik zawiera linie "Invoice-Lines"
                 if(!isset($plik->{"Invoice-Lines"})){
-                    return 'Brak lini "Invoice-Lines" w pliku';
+                    return 'Brak lini Invoice-Lines w pliku';
                 }
 
                 //lines
@@ -100,22 +100,20 @@ class ImportXml extends Controller
                     ]);
                     
 
-                    $order = new Order([
+                    $order = Order::firstOrCreate([
                         'BuyerOrderNumber' => $xml_order->BuyerOrderNumber,
                         'BuyerOrderDate' => $xml_order->BuyerOrderDate,
                     ]);
-                    $order->save();
                     $invoice->order()->associate($order);
 
-                    $delivery = new Delivery([
+                    $delivery = Delivery::firstOrCreate([
                         'DeliveryLocationNumber' => $xml_delivery->DeliveryLocationNumber,
                         'DeliveryDate' => $xml_delivery->DeliveryDate,
                         'DespatchNumber' => $xml_delivery->DespatchNumber
                     ]);
-                    $delivery->save();
                     $invoice->delivery()->associate($delivery);
 
-                    $buyer = new Buyer([
+                    $buyer = Buyer::firstOrCreate([
                         'ILN' => $xml_buyer->ILN,
                         'TaxID' => $xml_buyer->TaxID,
                         'Name' => $xml_buyer->Name,
@@ -124,10 +122,9 @@ class ImportXml extends Controller
                         'PostalCode' => $xml_buyer->PostalCode,
                         'Country' => $xml_buyer->Country
                     ]);
-                    $buyer->save();
                     $invoice->buyer()->associate($buyer);
 
-                    $seller = new Seller([
+                    $seller = Seller::firstOrCreate([
                         'ILN' => $xml_seller->ILN,
                         'TaxID' => $xml_seller->TaxID,
                         'AccountNumber' => $xml_seller->AccountNumber,
@@ -138,17 +135,15 @@ class ImportXml extends Controller
                         'PostalCode' => $xml_seller->PostalCode,
                         'Country' => $xml_seller->Country
                     ]);
-                    $seller->save();
                     $invoice->seller()->associate($seller);
 
-                    $summary = new Summary([
+                    $summary = Summary::firstOrCreate([
                         'TotalLines' => $xml_summary->TotalLines,
                         'TotalNetAmount' => $xml_summary->TotalNetAmount,
                         'TotalTaxableBasis' => $xml_summary->TotalTaxableBasis,
                         'TotalTaxAmount' => $xml_summary->TotalTaxAmount,
                         'TotalGrossAmount' => $xml_summary->TotalGrossAmount
                     ]);
-                    $summary->save();
                     $invoice->summary()->associate($summary);
                     
                     $invoice->save();
@@ -179,7 +174,7 @@ class ImportXml extends Controller
                     return true;
 
                 }else{
-                    return 'Nieprawidłowy plik.';
+                    return 'Plik nie przeszedł walidacji.';
                 }
         }
         $validate = validate($request->file("xml_file")->path());

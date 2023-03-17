@@ -1,0 +1,97 @@
+﻿<Document-Invoice>
+    <Invoice-Header>
+        <InvoiceNumber>Fa/3333/44</InvoiceNumber>
+        <InvoiceDate>2023-08-12</InvoiceDate>
+        <SalesDate>2023-08-13</SalesDate>
+        <InvoiceCurrency>PLN</InvoiceCurrency>
+        <InvoicePaymentDueDate>2023-09-22</InvoicePaymentDueDate>
+        <InvoicePaymentTerms>30</InvoicePaymentTerms>
+        <DocumentFunctionCode>H</DocumentFunctionCode>
+        <Order>
+            <BuyerOrderNumber>CC04/23/07/54</BuyerOrderNumber>
+            <BuyerOrderDate>2023-09-22</BuyerOrderDate>
+        </Order>
+        <Delivery>
+            <DeliveryLocationNumber>532562362</DeliveryLocationNumber>
+            <DeliveryDate>2023-09-22</DeliveryDate>
+            <DespatchNumber>HJS/65645654/45</DespatchNumber>
+        </Delivery>
+    </Invoice-Header>
+    <Invoice-Parties>
+        <Buyer>
+            <ILN>346346346346</ILN>
+            <TaxID>534-54-345-543</TaxID>
+            <Name>WRTS  S.A.</Name>
+            <StreetAndNumber>Cicha 34 A</StreetAndNumber>
+            <CityName>Poznań</CityName>
+            <PostalCode>54-755</PostalCode>
+            <Country>PL</Country>
+        </Buyer>
+        <Seller>
+            <ILN>54745745745653</ILN>
+            <TaxID>6554-645-65-456</TaxID>
+            <AccountNumber>56 0000 0000 65656 656 6565 656</AccountNumber>
+            <CodeByBuyer>Nie dotyczy</CodeByBuyer>
+            <Name>WRPSF Sp.z o.o. </Name>
+            <StreetAndNumber>Szkolna 17</StreetAndNumber>
+            <CityName>Białystok</CityName>
+            <PostalCode>53-647</PostalCode>
+            <Country>PL</Country>
+        </Seller>
+    </Invoice-Parties>
+    <Invoice-Lines>
+        <Line>
+            <Line-Item>
+                <LineNumber>1</LineNumber>
+                <EAN>436436346</EAN>
+                <SupplierItemCode>6436 Lt</SupplierItemCode>
+                <ItemDescription>Telefon</ItemDescription>
+                <ItemType>CU</ItemType>
+                <InvoiceQuantity>1</InvoiceQuantity>
+                <UnitOfMeasure>PCE</UnitOfMeasure>
+                <InvoiceUnitPacksize>1</InvoiceUnitPacksize>
+                <PackItemUnitOfMeasure>PCE</PackItemUnitOfMeasure>
+                <InvoiceUnitNetPrice>10872.17</InvoiceUnitNetPrice>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>2500.60</TaxAmount>
+                <NetAmount>10872.17</NetAmount>
+            </Line-Item>
+        </Line>
+        <Line>
+            <Line-Item>
+                <LineNumber>2</LineNumber>
+                <EAN>gerherherh</EAN>
+                <SupplierItemCode>AKS2122</SupplierItemCode>
+                <ItemDescription>Telefon</ItemDescription>
+                <ItemType>CU</ItemType>
+                <InvoiceQuantity>1</InvoiceQuantity>
+                <UnitOfMeasure>PCE</UnitOfMeasure>
+                <InvoiceUnitPacksize>1</InvoiceUnitPacksize>
+                <PackItemUnitOfMeasure>PCE</PackItemUnitOfMeasure>
+                <InvoiceUnitNetPrice>2207.00</InvoiceUnitNetPrice>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>507.61</TaxAmount>
+                <NetAmount>2207.00</NetAmount>
+            </Line-Item>
+        </Line>
+    </Invoice-Lines>
+    <Invoice-Summary>
+        <TotalLines>2</TotalLines>
+        <TotalNetAmount>13079.17</TotalNetAmount>
+        <TotalTaxableBasis>13079.17</TotalTaxableBasis>
+        <TotalTaxAmount>3008.21</TotalTaxAmount>
+        <TotalGrossAmount>16087.38</TotalGrossAmount>
+        <Tax-Summary>
+            <Tax-Summary-Line>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>3008.21</TaxAmount>
+                <TaxableBasis>13079.17</TaxableBasis>
+                <TaxableAmount>13079.17</TaxableAmount>
+                <GrossAmount>16087.38</GrossAmount>
+            </Tax-Summary-Line>
+        </Tax-Summary>
+    </Invoice-Summary>
+</Document-Invoice>
