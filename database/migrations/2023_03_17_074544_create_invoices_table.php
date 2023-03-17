@@ -52,5 +52,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('invoices');
+        dropConstrainedForeignId('order_id');
+        dropConstrainedForeignId('delivery_id');
+        dropConstrainedForeignId('buyer_id');
+        dropConstrainedForeignId('seller_id');
+        dropConstrainedForeignId('summary_id');
     }
 };
