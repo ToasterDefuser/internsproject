@@ -1,6 +1,6 @@
 jak uruchomić projekt:
 
-<p>-utwórz projekt w laravel (https://laravel.com/docs/10.x)</p>
+<P>-pobierz composer (https://getcomposer.org/download/)</p>
 <p>-wrzuć pliki z InternsProject</p>
 <p>-otwórz folder w twoim IDE</p>
 <p>-'php artisan serve' w terminalu</p>
