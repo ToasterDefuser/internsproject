@@ -1,0 +1,40 @@
+.register-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.register-container form{
+    border: 1px solid black;
+    width: 500px;
+    border-radius: 10px;
+    background-color: #ddd;
+    padding: 20px;
+    text-align: left;
+}
+
+.register-container h5 {
+    margin: 0px;
+}
+
+.register-container p {
+    margin: 0px;
+}
+
+
+.register-container input[type="text"], input[type="password"]{
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.register-container a {
+    text-decoration: underline;
+    color: blue;
+}

@@ -6,3 +6,5 @@
     <link href="{{ asset('css/viewData.css') }}" rel="stylesheet">
     <link href="{{ asset('css/import.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
