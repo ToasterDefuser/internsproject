@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF</title>
     <style>
 body{
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: DejaVu Sans;
 }
 
 .header{
     background-color: lightgray;
     width: 100%;
-    height: 100px;
+    height: 80px;
     text-align: center;
 }
 .header h2{
@@ -24,6 +26,7 @@ body{
 }
 
 .row1{
+    margin-top: 70px;
     text-align: center;
 }
 .row2{
@@ -60,8 +63,13 @@ table{
     border-collapse: collapse;
 
 }
+td {
+    overflow:hidden; 
+    white-space:nowrap
+}
 th, td{
-    font-size: 10px;
+    font-size: 8px;
+    padding: 5px
 }
 table, td {
   border: 1px solid;
@@ -71,10 +79,15 @@ table, td {
 .row4 th, td{
     margin: 10px;
 }
-.summary th, .summary td, .summary2 th, .summary2 td{
-    padding: 10px;
+.summary{
+    width: 500px;
 }
-
+.summary th, .summary td{
+    padding: 5px;
+}
+.summary2 th, .summary2 td{
+    padding: 5px;
+}
 .summary, .summary2{
     margin-top: 100px;
 }
@@ -84,12 +97,12 @@ table, td {
 </head>
 <body>
     <div class="header">
-        <h2>Faktura - orginal nr: {{ $invoice->InvoiceNumber }}</h2>
+        <h2>Faktura - orginał nr: {{ $invoice->InvoiceNumber }}</h2>
     </div>
     <div class="row1">
-        <h4>Data wystawienia: {{ $invoice->InvoiceDate }}</h4>
-        <h4>Data sprzedarzy: {{ $invoice->SalesDate }}</h4>
-        <h4>Awizo: {Awizo}</h4>
+        <h5>Data wystawienia: {{ $invoice->InvoiceDate }}</h5>
+        <h5>Data sprzedarzy: {{ $invoice->SalesDate }}</h5>
+        <h5>Awizo: {Awizo}</h5>
     </div>
     <div class="row2">
 
@@ -162,10 +175,10 @@ table, td {
         <table class="summary">
             <tr>
                 <th>Numer rachunku</th>
-                <th>Data platnosci</th>
-                <th>Termin platnosci</th>
-                <th>Forma platnosci</th>
-                <th>Kwota do zaplaty</th>
+                <th>Data płatności</th>
+                <th>Termin płatności</th>
+                <th>Forma płatności</th>
+                <th>Kwota do zapłaty</th>
                 <th>Waluta</th>
             </tr>
             <tr>
