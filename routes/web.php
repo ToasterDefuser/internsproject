@@ -16,6 +16,11 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::post('/xml', "App\HTTP\Controllers\ImportXml");
     Route::get('/logout', "App\HTTP\Controllers\LogoutController");
+
+    Route::get('/pdf', "App\HTTP\Controllers\PDFController");
+    Route::get('/pdft', function () {
+        return view('pdf');
+    })->name('pdft');
 });
 
 // User niezalogowany
