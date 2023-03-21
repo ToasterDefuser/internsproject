@@ -12,7 +12,14 @@ class Summary extends Model
         'TotalNetAmount',
         'TotalTaxableBasis',
         'TotalTaxAmount',
-        'TotalGrossAmount'
+        'TotalGrossAmount',
+        // tax
+        'TaxRate',
+        'TaxCategoryCode',
+        'TaxAmount',
+        'TaxableBasis',
+        'TaxableAmount',
+        'GrossAmount'
     ];    
     
     public $timestamps = false;

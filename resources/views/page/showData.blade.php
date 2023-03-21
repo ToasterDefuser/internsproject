@@ -1,6 +1,27 @@
 @extends('layouts.default')
 @section('content')
    <div class="table_div">
+    <div>
+        Filtry:
+        <br>
+        Akronim dostawcy
+        <select name="" id="">
+            <option>Wszystkie</option>
+            <?php
+                use App\Models\Invoice;
+                use App\Models\Order;
+                use App\Models\Delivery;
+                use App\Models\Seller;
+                use App\Models\Buyer;
+                use App\Models\Item;
+
+                $buyers = Buyer::all();
+                foreach($buyers as $buyer){
+                    echo "<option>".$buyer->Name."</option>";
+                }
+            ?>
+        </select>
+    </div>
     <table>
         <tr>
             <th>Kontrahent</th>
@@ -11,16 +32,7 @@
             <th>Kwota brutto</th>
             <th>Zamówienie</th>
         </tr>
-            <?php 
-                use App\Models\Invoice;
-                use App\Models\Order;
-                use App\Models\Delivery;
-                use App\Models\Seller;
-                use App\Models\Buyer;
-                use App\Models\Item;
-
-
-
+            <?php
                $invoices = Invoice::with('summary', 'buyer', 'order')->get();
                 foreach($invoices as $invoice){
                     echo "<tr>";
