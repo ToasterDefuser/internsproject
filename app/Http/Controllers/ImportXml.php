@@ -142,7 +142,15 @@ class ImportXml extends Controller
                         'TotalNetAmount' => $xml_summary->TotalNetAmount,
                         'TotalTaxableBasis' => $xml_summary->TotalTaxableBasis,
                         'TotalTaxAmount' => $xml_summary->TotalTaxAmount,
-                        'TotalGrossAmount' => $xml_summary->TotalGrossAmount
+                        'TotalGrossAmount' => $xml_summary->TotalGrossAmount,
+                        'TaxRate' => $xml_summary->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxRate,
+                        'TaxCategoryCode' => $xml_summary->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxCategoryCode,
+                        'TaxAmount' => $xml_summary->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxAmount,
+                        'TaxableBasis' => $xml_summary->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxableBasis,
+                        'TaxableAmount' => $xml_summary->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxableAmount,
+                        'GrossAmount' => $xml_summary->{"Tax-Summary"}->{"Tax-Summary-Line"}->GrossAmount
+
+
                     ]);
                     $invoice->summary()->associate($summary);
                     
@@ -150,7 +158,7 @@ class ImportXml extends Controller
 
                     foreach($plik->{"Invoice-Lines"}->Line as $line){
                         $xml_item = $line->{"Line-Item"};
-                        $item = new Item([
+                        $item = Item::firstOrCreate([
                             'LineNumber' => $xml_item->LineNumber,
                             'EAN' => $xml_item->EAN,
                             'SupplierItemCode' => $xml_item->SupplierItemCode,
@@ -166,7 +174,6 @@ class ImportXml extends Controller
                             'TaxAmount' => $xml_item->TaxAmount,
                             'NetAmount' => $xml_item->NetAmount
                         ]);
-                        $item->save();
                         $invoice->items()->attach($item, ['quantity' => $xml_item_quantity, 'invoice_id'=>$invoice->id]);
                     }
 
