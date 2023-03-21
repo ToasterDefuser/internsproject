@@ -6,96 +6,94 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF</title>
-    <style>
-body{
-    margin: 0;
-    padding: 0;
-    /*font-family: Arial, Helvetica, sans-serif;*/
-    font-family: DejaVu Sans;
-}
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        /*font-family: Arial, Helvetica, sans-serif;*/
+        font-family: DejaVu Sans;
+    }
 
-.header{
-    background-color: lightgray;
-    width: 100%;
-    height: 80px;
+    .header{
+        background-color: lightgray;
+        width: 100%;
+        height: 80px;
+        text-align: center;
+    }
+    .header h2{
+        background-color: lightgray;
+        padding: 50px;
+    }
+
+    .row1{
+        margin-top: 70px;
+        text-align: center;
+    }
+    .row2{
+        min-width: 100%;
+    }
+    .row2 > *{
+        text-align: center;
+    }
+    .seller{
+        float: left;
+    }
+    .buyer{
+        float: right;
+    }
+    .x{
+        float: left;
+        margin-left: 240px
+    }
+
+    h5{
+        margin: 0px;
+        padding: 0px;
+    }
+    p{
+        font-size: 14px;
+        margin: 0px;
+        padding: 0px
+    }
+    .row3{
+
+    }
+    .items{
+        margin-top: 200px;
+    }
+    table{
+        border-collapse: collapse;
+
+    }
+    td {
+        overflow:hidden; 
+        white-space:nowrap
+    }
+    th, td{
+        font-size: 8px;
+        padding: 5px
+    }
+    table, td {
+    border: 1px solid;
     text-align: center;
-}
-.header h2{
-    background-color: lightgray;
-    padding: 50px;
-}
+    }
 
-.row1{
-    margin-top: 70px;
-    text-align: center;
-}
-.row2{
-    min-width: 100%;
-}
-.row2 > *{
-    text-align: center;
-}
-.seller{
-    float: left;
-}
-.buyer{
-    float: right;
-}
-.x{
-    float: left;
-    margin-left: 240px
-}
-
-h5{
-    margin: 0px;
-    padding: 0px;
-}
-p{
-    font-size: 14px;
-    margin: 0px;
-    padding: 0px
-}
-.row3{
-
-}
-.items{
-    margin-top: 200px;
-}
-table{
-    border-collapse: collapse;
-
-}
-td {
-    overflow:hidden; 
-    white-space:nowrap
-}
-th, td{
-    font-size: 8px;
-    padding: 5px
-}
-table, td {
-  border: 1px solid;
-  text-align: center;
-}
-
-.row4 th, td{
-    margin: 10px;
-}
-.summary{
-    width: 500px;
-}
-.summary th, .summary td{
-    padding: 5px;
-}
-.summary2 th, .summary2 td{
-    padding: 5px;
-}
-.summary, .summary2{
-    margin-top: 100px;
-}
-
-
-    </style>
+    .row4 th, td{
+        margin: 10px;
+    }
+    .summary{
+        width: 500px;
+    }
+    .summary th, .summary td{
+        padding: 5px;
+    }
+    .summary2 th, .summary2 td{
+        padding: 5px;
+    }
+    .summary, .summary2{
+        margin-top: 100px;
+    }
+</style>
 </head>
 <body>
     <div class="header">
