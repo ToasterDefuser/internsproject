@@ -18,6 +18,14 @@ return new class extends Migration
             $table->string('TotalTaxableBasis');
             $table->string('TotalTaxAmount');
             $table->string('TotalGrossAmount');
+
+            // tax summary
+            $table->string('TaxRate');
+            $table->string('TaxCategoryCode');
+            $table->string('TaxAmount');
+            $table->string('TaxableBasis');
+            $table->string('TaxableAmount');
+            $table->string('GrossAmount');
             
         });
     }
