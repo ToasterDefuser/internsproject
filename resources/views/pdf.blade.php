@@ -51,7 +51,9 @@ h5{
     padding: 0px;
 }
 p{
-    font-size: 10px;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px
 }
 .row3{
 
@@ -102,7 +104,9 @@ table, td {
     <div class="row1">
         <h5>Data wystawienia: {{ $invoice->InvoiceDate }}</h5>
         <h5>Data sprzedarzy: {{ $invoice->SalesDate }}</h5>
+        <?php /* 
         <h5>Awizo: {Awizo}</h5>
+        */ ?> 
     </div>
     <div class="row2">
 
@@ -116,6 +120,7 @@ table, td {
             <p>{{ $invoice->seller->Country }}</p>
         </div>
 
+        <?php /* 
         <div class="x">
         <h5>xxx:</h5>
             <p>x</p>
@@ -125,7 +130,7 @@ table, td {
             <p>x</p>
             <p>x</p>
         </div>
-
+        */ ?> 
         <div class="buyer">
         <h5>Nabywca:</h5>
             <p>ILN: {{ $invoice->buyer->ILN }}</p>
