@@ -4,15 +4,18 @@
     justify-content: center;
     align-items: center;
 
+    background-color: #56baed;
+
 }
 
 .register-container form{
-    border: 1px solid black;
     width: 500px;
-    border-radius: 10px;
-    background-color: #ddd;
+    background-color: white;
     padding: 20px;
     text-align: left;
+
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    border-radius: 10px 10px 10px 10px;
 }
 
 .register-container h5 {
@@ -29,9 +32,11 @@
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 2px solid #f6f6f6;
     border-radius: 4px;
     box-sizing: border-box;
+
+    background-color: #f6f6f6;
 }
 
 .register-container a {
