@@ -97,7 +97,7 @@
 </head>
 <body>
     <div class="header">
-        <h2>Faktura - orginał nr: {{ $invoice->InvoiceNumber }}</h2>
+        <h2>Faktura - oryginał nr: {{ $invoice->InvoiceNumber }}</h2>
     </div>
     <div class="row1">
         <h5>Data wystawienia: {{ $invoice->InvoiceDate }}</h5>
