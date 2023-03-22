@@ -1,0 +1,97 @@
+<Document-Invoice>
+    <Invoice-Header>
+        <InvoiceNumber>CR/6300/23</InvoiceNumber>
+        <InvoiceDate>2023-12-21</InvoiceDate>
+        <SalesDate>2023-12-21</SalesDate>
+        <InvoiceCurrency>PLN</InvoiceCurrency>
+        <InvoicePaymentDueDate>2023-12-22</InvoicePaymentDueDate>
+        <InvoicePaymentTerms>60</InvoicePaymentTerms>
+        <DocumentFunctionCode>Z</DocumentFunctionCode>
+        <Order>
+            <BuyerOrderNumber>CR01/23/12/21</BuyerOrderNumber>
+            <BuyerOrderDate>2023-12-21</BuyerOrderDate>
+        </Order>
+        <Delivery>
+            <DeliveryLocationNumber>1234567890</DeliveryLocationNumber>
+            <DeliveryDate>2023-06-07</DeliveryDate>
+            <DespatchNumber>ALF/00006/23</DespatchNumber>
+        </Delivery>
+    </Invoice-Header>
+    <Invoice-Parties>
+        <Buyer>
+            <ILN>43243234332</ILN>
+            <TaxID>767-232-32-12</TaxID>
+            <Name>FIP S.A.</Name>
+            <StreetAndNumber>Fikuśna 23 C</StreetAndNumber>
+            <CityName>Grudziądz</CityName>
+            <PostalCode>22-121</PostalCode>
+            <Country>PL</Country>
+        </Buyer>
+        <Seller>
+            <ILN>23233233323</ILN>
+            <TaxID>521-123-32-12</TaxID>
+            <AccountNumber>34 0000 0000 3223 2233 1111 2222</AccountNumber>
+            <CodeByBuyer>Nie dotyczy</CodeByBuyer>
+            <Name>ZP Sp.z o.o. </Name>
+            <StreetAndNumber>Kwiatowa 8</StreetAndNumber>
+            <CityName>Gdańsk</CityName>
+            <PostalCode>05-800</PostalCode>
+            <Country>PL</Country>
+        </Seller>
+    </Invoice-Parties>
+    <Invoice-Lines>
+        <Line>
+            <Line-Item>
+                <LineNumber>1</LineNumber>
+                <EAN>9988433501</EAN>
+                <SupplierItemCode>WRR93 K</SupplierItemCode>
+                <ItemDescription>Lodówka</ItemDescription>
+                <ItemType>CU</ItemType>
+                <InvoiceQuantity>1</InvoiceQuantity>
+                <UnitOfMeasure>PCE</UnitOfMeasure>
+                <InvoiceUnitPacksize>1</InvoiceUnitPacksize>
+                <PackItemUnitOfMeasure>PCE</PackItemUnitOfMeasure>
+                <InvoiceUnitNetPrice>10872.17</InvoiceUnitNetPrice>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>K</TaxCategoryCode>
+                <TaxAmount>2500.60</TaxAmount>
+                <NetAmount>10872.17</NetAmount>
+            </Line-Item>
+        </Line>
+        <Line>
+            <Line-Item>
+                <LineNumber>2</LineNumber>
+                <EAN>00988883401-RRV</EAN>
+                <SupplierItemCode>WRR99 KL</SupplierItemCode>
+                <ItemDescription>Lodówka z maszyną do lodu</ItemDescription>
+                <ItemType>CU</ItemType>
+                <InvoiceQuantity>1</InvoiceQuantity>
+                <UnitOfMeasure>PCE</UnitOfMeasure>
+                <InvoiceUnitPacksize>1</InvoiceUnitPacksize>
+                <PackItemUnitOfMeasure>PCE</PackItemUnitOfMeasure>
+                <InvoiceUnitNetPrice>2207.00</InvoiceUnitNetPrice>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>P</TaxCategoryCode>
+                <TaxAmount>507.61</TaxAmount>
+                <NetAmount>2207.00</NetAmount>
+            </Line-Item>
+        </Line>
+    </Invoice-Lines>
+    <Invoice-Summary>
+        <TotalLines>2</TotalLines>
+        <TotalNetAmount>13079.17</TotalNetAmount>
+        <TotalTaxableBasis>13079.17</TotalTaxableBasis>
+        <TotalTaxAmount>3008.21</TotalTaxAmount>
+        <TotalGrossAmount>16087.38</TotalGrossAmount>
+        <Tax-Summary>
+            <Tax-Summary-Line>
+                <TaxRate>23.00</TaxRate>
+                <TaxCategoryCode>S</TaxCategoryCode>
+                <TaxAmount>3008.21</TaxAmount>
+                <TaxableBasis>13079.17</TaxableBasis>
+                <TaxableAmount>13079.17</TaxableAmount>
+                <GrossAmount>16087.38</GrossAmount>
+            </Tax-Summary-Line>
+        </Tax-Summary>
+    </Invoice-Summary>
+</Document-Invoice>

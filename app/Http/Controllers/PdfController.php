@@ -12,7 +12,7 @@ use App\Models\Invoice;
 class PdfController extends Controller
 {
     public function __invoke(Request $request){
-        $invoice_id = 1;
+        $invoice_id = $request->invoiceId;
         $invoice = Invoice::find($invoice_id);
 
         $pdf = PDF::loadView('pdf', compact('invoice'));

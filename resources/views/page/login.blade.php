@@ -9,6 +9,9 @@
    .leftMenu{
       display: none;
    }
+   #svgBars{
+      display: none;
+   }
 </style>
    <div class="login-container">
    <form action="/LoginController" method="post" name="loginForm">
