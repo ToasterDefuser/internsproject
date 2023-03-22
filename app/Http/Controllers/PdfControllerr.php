@@ -9,14 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use PDF;
 use App\Models\Invoice;
 
-class PDFController extends Controller
+class PdfController extends Controller
 {
     public function __invoke(Request $request){
         $invoice_id = 1;
         $invoice = Invoice::find($invoice_id);
 
         $pdf = PDF::loadView('pdf', compact('invoice'));
-        //echo dd($invoice->items);
         return $pdf->stream('pdf_file.pdf');
         
     }

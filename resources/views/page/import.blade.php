@@ -20,7 +20,7 @@
    </textarea>
 </div>
 <script>
-    // funkcja formatująca plik JSOn
+    // funkcja formatująca plik JSON
        function jsonFormat() {
             var badJSON = document.getElementById('json_text').value;
             var parseJSON = JSON.parse(badJSON);
@@ -71,21 +71,24 @@
     
     const input_file = document.getElementById("input_file");
     input_file.addEventListener("change", () => {
-        //<textarea id="json_text" cols=100 rows=20 style="display: none" disabled>
 
         let file = input_file.files[0];
         let dotIndex = file.name.lastIndexOf(".")
+
+        // sprawdzenie czy plik jest w formacie XML
         if(file.name.substring(dotIndex + 1) !== "xml"){
             alert("Plik nie jest w formacie XML")
             input_file.value = '';
             return
         }
-        // zmiana wartości przyciska
+        
+        // zmiana wartości przycisku do importowania plików
         document.getElementById("label_input_file").innerHTML = file.name
 
         let reader = new FileReader()
         reader.onload = function(e)
         { 
+            // konwertowanie XML na JSON
             let xml2text = e.target.result
             let parser = new DOMParser();
             let xml = parser.parseFromString(xml2text, "text/xml");
@@ -95,9 +98,13 @@
 
             const parentElement = document.querySelector('#textAreaDiv')
             const existingTextArea = document.querySelector("#json_text")
+
+            // usunięcie istniejącego podglądu JSON
             if(existingTextArea){
                 parentElement.removeChild(existingTextArea)
             }
+
+            // utworzenie nowego podglądu JSON
             const textArea = document.createElement('textarea');
             textArea.cols = 100;
             textArea.rows = 20;
