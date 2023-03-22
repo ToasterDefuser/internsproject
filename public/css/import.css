@@ -1,8 +1,5 @@
 .formContainer{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+margin-top: 50px;
 }
 .form{
 
@@ -28,7 +25,7 @@
 }
 
 .btn-submit{
-    background-color: #4188db; /* Green */
+    background-color: black; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -40,7 +37,7 @@
 }
 
 .btn-import{
-    background-color: #4188db; /* Green */
+    background-color: black; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -67,7 +64,7 @@ input[type="file"] {
   }
 
   #textAreaDiv{
-    margin-top: 70vh;
+    margin-top: 10vh;
     margin-bottom: 20vh;
     display: flex;
     justify-content: center;
