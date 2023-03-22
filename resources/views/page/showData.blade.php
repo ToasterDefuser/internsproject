@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
    <div class="table_div">
-    <div class="filters">
+    <div>
         Filtry:
         <br>
         <form method="GET" action="">
@@ -106,12 +106,12 @@
             $selectedValue = false;
             
         }
-        if(isset($_GET["towar"])){
-                $selectedEAN = urldecode($_GET["towar"]);
-                if($selectedEAN == ""){
-                    $selectedEAN = "all";
-                }
-            }
+if(isset($_GET["towar"])){
+        $selectedEAN = urldecode($_GET["towar"]);
+        if($selectedEAN == ""){
+            $selectedEAN = "all";
+        }
+    }
         ?>
         </select>
 
@@ -152,14 +152,14 @@
                 }
             }else{
                 //filtr sprawdzajacy czy podana wartosc jest rowna tej znajdujacej sie w bazie lub czy jest rowna all
-                //na każdy element w $invoices jest if który sprawdza wszystkie wartosci
+                //na każdy element w $invoices jest if który sprawdza wszystkie wartosci poza EAN
                 foreach($invoices as $invoice){
                 if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all"))){
-                    //osobna pętla sprawdzająca czy w zamówieniu pojawia się dany numer EAN, np. firma Test S.A. składa zamówienie
-                    //w którym znajduje sie zamrażarka z numerem EAN 2323433343 i zamrażarka z numerem EAN 4323433343
-                    foreach($invoice->items as $EAN){
-                        if($EAN->EAN == $selectedEAN || $selectedEAN == "all"){
-                            echo "<tr>";
+                    //sprawdzenie czy $selectedEAN jest równy all, w przeciwnym razie użycie pętli foreach
+                    //taki system zapobiega powtarzaniu się wyników kiedy selectedEAN jest równy all,
+                    //a inne wartosci są zmienione
+                    if($selectedEAN == "all"){
+                        echo "<tr>";
                             // kontrahent
                             echo "<td>".$invoice->buyer->Name."</td>";
                             // Faktura
@@ -175,15 +175,31 @@
                             // Zamówienie
                             echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
                         echo "</tr>";
-
+                    }else{
+                        //osobna pętla sprawdzająca czy w zamówieniu pojawia się dany numer EAN, np. firma Test S.A. składa zamówienie
+                        //w którym znajduje sie zamrażarka z numerem EAN 2323433343 i zamrażarka z numerem EAN 4323433343
+                        foreach($invoice->items as $EAN){
+                            if($EAN->EAN == $selectedEAN){
+                                echo "<tr>";
+                                // kontrahent
+                                echo "<td>".$invoice->buyer->Name."</td>";
+                                // Faktura
+                                echo "<td>".$invoice->InvoiceNumber."</td>";
+                                // Data wystawienia
+                                echo "<td>".$invoice->InvoiceDate."</td>";
+                                // Data wpływu
+                                echo "<td>".$invoice->created_at."</td>";
+                                // Kwota netto
+                                echo "<td>".$invoice->summary->TotalNetAmount."</td>";
+                                // Kwota brutto
+                                echo "<td>".$invoice->summary->TotalGrossAmount."</td>";
+                                // Zamówienie
+                                echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
+                            echo "</tr>";
+    
+                            }
                         }
                     }
-                    //var_dump używany do debugowania
-                    /*echo var_dump(str_replace(' ','',$selectedBuyerName))."<br>";
-                    echo var_dump(str_replace(' ','',$invoice->buyer->Name))."<br>";
-                    echo var_dump(str_replace(' ','',$selectedInvoiceNumber))."<br>";
-                    echo var_dump(str_replace(' ','',$invoice->InvoiceNumber))."<br>";*/
-                    
                 }
             }
             }
