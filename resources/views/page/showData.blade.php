@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
    <div class="table_div">
-    <div>
+    <div class="filters">
         Filtry:
         <br>
         <form method="GET" action="">
@@ -106,12 +106,12 @@
             $selectedValue = false;
             
         }
-if(isset($_GET["towar"])){
-        $selectedEAN = urldecode($_GET["towar"]);
-        if($selectedEAN == ""){
-            $selectedEAN = "all";
-        }
-    }
+        if(isset($_GET["towar"])){
+                $selectedEAN = urldecode($_GET["towar"]);
+                if($selectedEAN == ""){
+                    $selectedEAN = "all";
+                }
+            }
         ?>
         </select>
 

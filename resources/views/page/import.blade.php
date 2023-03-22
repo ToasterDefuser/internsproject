@@ -7,7 +7,7 @@
 @endif
 <div class="form">
     <div class="formContainer">
-        <form action="/xml" method="post" enctype="multipart/form-data">
+        <form action="/xml" method="post" enctype="multipart/form-data" class="import_form">
             @csrf
             <label for="file"><h3>Wybierz plik do importu</h3></label>
             <label for="input_file" class="btn-import" id="label_input_file">
