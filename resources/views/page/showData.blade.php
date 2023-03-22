@@ -136,7 +136,7 @@ if(isset($_GET["towar"])){
             <th>Zamówienie</th>
         </tr>
             <?php      
-            $invoices = Invoice::with('summary', 'buyer', 'order','items')->get();
+            $invoices = Invoice::with('items')->get();
             
             //osobny if który sprawdza czy wszystko jest ustawione na all i od razu wypisuje wszystkie wartości bez
             //potrzeby sprawdzania kilku warunków w pętli
@@ -165,7 +165,7 @@ if(isset($_GET["towar"])){
                 //filtr sprawdzajacy czy podana wartosc jest rowna tej znajdujacej sie w bazie lub czy jest rowna all
                 //na każdy element w $invoices jest if który sprawdza wszystkie wartosci
                 foreach($invoices as $invoice){
-                if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all")) && ($selectedEAN == $invoice->InvoiceNumber || $selectedEAN == "all")){
+                if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all")) && ($selectedEAN == $invoice->items[0]->EAN || $selectedEAN == "all")){
 
                     //var_dump używany do debugowania
                     /*echo var_dump(str_replace(' ','',$selectedBuyerName))."<br>";

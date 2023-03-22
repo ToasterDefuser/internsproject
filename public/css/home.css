@@ -106,7 +106,11 @@ nav a {
 .logout{
     border-top: 1px solid white;
 }
-
+.title{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
 .auth-container{
     width: 100vw;
     display: flex;
@@ -182,6 +186,11 @@ nav a {
     .auth-container{
         flex-direction: column;
         height: 100%;
+    }
+    .form{
+        position: static;
+        transform: none;
+        margin-top: 50px;
     }
   }
   @media only screen and (max-width: 350px) {
