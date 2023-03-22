@@ -4,6 +4,9 @@
    .leftMenu{
       display: none;
    }
+   #svgBars{
+      display: none;
+   }
 </style>
    <div class="auth-container">
       <button id="login" onClick="redirect('/login')">Logowanie</button>

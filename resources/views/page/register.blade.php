@@ -9,6 +9,9 @@
    .leftMenu{
       display: none;
    }
+   #svgBars{
+      display: none;
+   }
 </style>
    <div class="register-container">
    <form action="/RegisterController" method="post" name="registerForm" onSubmit="return validateForm()">
