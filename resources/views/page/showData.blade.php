@@ -21,16 +21,12 @@
                 use App\Models\Seller;
                 use App\Models\Buyer;
                 use App\Models\Item;
-
                 $selectedBuyerName= "all";
                 $selectedInvoiceNumber = "all";
                 $selectedEAN = "all";
-
                 //dodawanie opcji select dla buyer
                 //pętla sprawdza czy jakaś wartość została już przedtem wybrana i nadaje jej 'selected', inaczej
                 //po każdej zmianie filtry sie restują i można wybrać tylko 1 filtr
-
-
                 $buyers = Buyer::all();
                 $selectedValue = false;
                 foreach($buyers as $buyer){
@@ -45,7 +41,6 @@
                     $selectedValue = false;
                     
                 }
-
                 if(isset($_GET["wartosci"])){
                     $selectedBuyerName = urldecode($_GET["wartosci"]);
                     if($selectedBuyerName == ""){
@@ -85,7 +80,6 @@
                     $selectedInvoiceNumber = "all";
                 }
             }
-
         ?>
         </select>
 
@@ -118,9 +112,6 @@ if(isset($_GET["towar"])){
             $selectedEAN = "all";
         }
     }
-
-
-
         ?>
         </select>
 
@@ -140,7 +131,6 @@ if(isset($_GET["towar"])){
             
             //osobny if który sprawdza czy wszystko jest ustawione na all i od razu wypisuje wszystkie wartości bez
             //potrzeby sprawdzania kilku warunków w pętli
-
             if($selectedBuyerName == "all" && $selectedInvoiceNumber == "all" && $selectedEAN == "all"){
                 foreach($invoices as $invoice){
                     echo "<tr>";
@@ -159,13 +149,12 @@ if(isset($_GET["towar"])){
                     // Zamówienie
                     echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
               echo "</tr>";
-
                 }
             }else{
                 //filtr sprawdzajacy czy podana wartosc jest rowna tej znajdujacej sie w bazie lub czy jest rowna all
                 //na każdy element w $invoices jest if który sprawdza wszystkie wartosci
                 foreach($invoices as $invoice){
-                if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all")) && ($selectedEAN == $invoice->items[0]->EAN || $selectedEAN == "all")){
+                if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all")) && ($selectedEAN == $invoice->InvoiceNumber || $selectedEAN == "all")){
 
                     //var_dump używany do debugowania
                     /*echo var_dump(str_replace(' ','',$selectedBuyerName))."<br>";
@@ -193,7 +182,6 @@ if(isset($_GET["towar"])){
             }
             }
             
-
           ?>
       </table>
  </div>
