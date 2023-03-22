@@ -21,16 +21,12 @@
                 use App\Models\Seller;
                 use App\Models\Buyer;
                 use App\Models\Item;
-
                 $selectedBuyerName= "all";
                 $selectedInvoiceNumber = "all";
                 $selectedEAN = "all";
-
                 //dodawanie opcji select dla buyer
                 //pętla sprawdza czy jakaś wartość została już przedtem wybrana i nadaje jej 'selected', inaczej
                 //po każdej zmianie filtry sie restują i można wybrać tylko 1 filtr
-
-
                 $buyers = Buyer::all();
                 $selectedValue = false;
                 foreach($buyers as $buyer){
@@ -45,7 +41,6 @@
                     $selectedValue = false;
                     
                 }
-
                 if(isset($_GET["wartosci"])){
                     $selectedBuyerName = urldecode($_GET["wartosci"]);
                     if($selectedBuyerName == ""){
@@ -85,7 +80,6 @@
                     $selectedInvoiceNumber = "all";
                 }
             }
-
         ?>
         </select>
 
@@ -118,9 +112,6 @@ if(isset($_GET["towar"])){
             $selectedEAN = "all";
         }
     }
-
-
-
         ?>
         </select>
 
@@ -140,7 +131,6 @@ if(isset($_GET["towar"])){
             
             //osobny if który sprawdza czy wszystko jest ustawione na all i od razu wypisuje wszystkie wartości bez
             //potrzeby sprawdzania kilku warunków w pętli
-
             if($selectedBuyerName == "all" && $selectedInvoiceNumber == "all" && $selectedEAN == "all"){
                 foreach($invoices as $invoice){
                     echo "<tr>";
@@ -159,41 +149,45 @@ if(isset($_GET["towar"])){
                     // Zamówienie
                     echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
               echo "</tr>";
-
                 }
             }else{
                 //filtr sprawdzajacy czy podana wartosc jest rowna tej znajdujacej sie w bazie lub czy jest rowna all
                 //na każdy element w $invoices jest if który sprawdza wszystkie wartosci
                 foreach($invoices as $invoice){
-                if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all")) && ($selectedEAN == $invoice->InvoiceNumber || $selectedEAN == "all")){
+                if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all"))){
+                    //osobna pętla sprawdzająca czy w zamówieniu pojawia się dany numer EAN, np. firma Test S.A. składa zamówienie
+                    //w którym znajduje sie zamrażarka z numerem EAN 2323433343 i zamrażarka z numerem EAN 4323433343
+                    foreach($invoice->items as $EAN){
+                        if($EAN->EAN == $selectedEAN || $selectedEAN == "all"){
+                            echo "<tr>";
+                            // kontrahent
+                            echo "<td>".$invoice->buyer->Name."</td>";
+                            // Faktura
+                            echo "<td>".$invoice->InvoiceNumber."</td>";
+                            // Data wystawienia
+                            echo "<td>".$invoice->InvoiceDate."</td>";
+                            // Data wpływu
+                            echo "<td>".$invoice->created_at."</td>";
+                            // Kwota netto
+                            echo "<td>".$invoice->summary->TotalNetAmount."</td>";
+                            // Kwota brutto
+                            echo "<td>".$invoice->summary->TotalGrossAmount."</td>";
+                            // Zamówienie
+                            echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
+                        echo "</tr>";
 
+                        }
+                    }
                     //var_dump używany do debugowania
                     /*echo var_dump(str_replace(' ','',$selectedBuyerName))."<br>";
                     echo var_dump(str_replace(' ','',$invoice->buyer->Name))."<br>";
                     echo var_dump(str_replace(' ','',$selectedInvoiceNumber))."<br>";
                     echo var_dump(str_replace(' ','',$invoice->InvoiceNumber))."<br>";*/
-
-                    echo "<tr>";
-                          // kontrahent
-                          echo "<td>".$invoice->buyer->Name."</td>";
-                          // Faktura
-                          echo "<td>".$invoice->InvoiceNumber."</td>";
-                          // Data wystawienia
-                          echo "<td>".$invoice->InvoiceDate."</td>";
-                          // Data wpływu
-                          echo "<td>".$invoice->created_at."</td>";
-                          // Kwota netto
-                          echo "<td>".$invoice->summary->TotalNetAmount."</td>";
-                          // Kwota brutto
-                          echo "<td>".$invoice->summary->TotalGrossAmount."</td>";
-                          // Zamówienie
-                          echo "<td>".$invoice->order->BuyerOrderNumber."</td>";
-                    echo "</tr>";
+                    
                 }
             }
             }
             
-
           ?>
       </table>
  </div>
