@@ -51,3 +51,13 @@ table td {
     flex-direction: column;
     
   }
+
+  .filters h4{
+    margin: 0
+  }
+
+  .filer_form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
