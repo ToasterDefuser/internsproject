@@ -1,12 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+// Middlewares
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\HomeMiddleware;
 
-use App\HTTP\Controllers\ImportXml;
+// Controllers
+use App\HTTP\Controllers\ImportXmlController;
 use App\HTTP\Controllers\LogoutController;
-use App\HTTP\Controllers\PDFController;
+use App\HTTP\Controllers\PdfController;
 use App\HTTP\Controllers\RegisterController;
 use App\HTTP\Controllers\LoginController;
 
@@ -20,10 +23,9 @@ Route::middleware([AuthMiddleware::class])->group(function () {
         return view('page/showData');
     })->name('view');
 
-    Route::post('/xml', ImportXml::class);
+    Route::post('/xml', ImportXmlController::class);
     Route::get('/logout', LogoutController::class);
-
-    Route::get('/pdf', PDFController::class);
+    Route::get('/pdf', PdfController::class);
 });
 
 // User niezalogowany
