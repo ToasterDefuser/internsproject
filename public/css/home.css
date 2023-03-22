@@ -2,21 +2,24 @@ body{
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: white;
+    background-color: lightgray;
     min-height: 100vh;
     display:flex; 
     flex-direction:column;
 }
 
 nav {
-    background-color: #3e5c76;
+    background-color: black;
     color: #c2dfe3;
 
     display: flex;  
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     min-width: 100%;
     height: 8vh;
+}
+.svgBars{
+    cursor: pointer;
 }
 main{
     flex: 1;
@@ -24,7 +27,7 @@ main{
 }
 
 footer{
-    background-color: #0D1321;
+    background-color: black;
     min-width: 100%;
     height: 5vh;
 }
@@ -32,7 +35,9 @@ footer{
 .leftMenu {
     min-height: 100%;
     min-width: 200px;
-    background-color: #acacaf;
+
+    background-color: gray;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     color: white;
 
     display: flex;
@@ -67,12 +72,16 @@ a{
     align-items: center;
 
     width: 100%;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid white;
 }
 
 .session h5{
     margin: 0px;
 
+}
+
+.session h4{
+    cursor: pointer;
 }
 
 .leftMenu a {
@@ -95,7 +104,7 @@ nav a {
 }
 
 .logout{
-    border-top: 1px solid lightgray;
+    border-top: 1px solid white;
 }
 
 .auth-container{
