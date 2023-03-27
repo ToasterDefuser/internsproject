@@ -101,7 +101,7 @@
     </div>
     <div class="row1">
         <h5>Data wystawienia: {{ $invoice->InvoiceDate }}</h5>
-        <h5>Data sprzedarzy: {{ $invoice->SalesDate }}</h5>
+        <h5>Data sprzedaży: {{ $invoice->SalesDate }}</h5>
         <?php /* 
         <h5>Awizo: {Awizo}</h5>
         */ ?> 

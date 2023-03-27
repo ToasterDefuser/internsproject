@@ -153,6 +153,7 @@
                 //filtr sprawdzajacy czy podana wartosc jest rowna tej znajdujacej sie w bazie lub czy jest rowna all
                 //na każdy element w $invoices jest if który sprawdza wszystkie wartosci poza EAN
                 foreach($invoices as $invoice){
+                //str_replace() jest użyty ponieważ wartości w bazie danych mają 2 spacje, więc usuwam wszystkie odstępy i dopiero wtedy porównuje 
                 if((str_replace(' ','',$selectedBuyerName) == str_replace(' ','',$invoice->buyer->Name) || $selectedBuyerName == "all") && (str_replace(' ','',$selectedInvoiceNumber == str_replace(' ','',$invoice->InvoiceNumber) || $selectedInvoiceNumber == "all"))){
                     //sprawdzenie czy $selectedEAN jest równy all, w przeciwnym razie użycie pętli foreach
                     //taki system zapobiega powtarzaniu się wyników kiedy selectedEAN jest równy all,
