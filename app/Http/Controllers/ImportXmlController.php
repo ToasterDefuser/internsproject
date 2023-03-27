@@ -1,5 +1,4 @@
 <?php
-//ImportXmlController odpowiada za sprawdzanie wartości, import.blade odpowiada za wyswietlanie .json
 namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
