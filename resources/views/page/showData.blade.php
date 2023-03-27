@@ -8,6 +8,25 @@
                 <p>Akronim dostawcy</p>
                 <select name="wartosci" id="" onchange="this.form.submit()">
                 <option value="all"<?php if(isset($_GET['wartosci']) && $_GET['wartosci'] == "all") echo 'selected';?>>Wszystkie</option>
+
+                <script>
+                function showHint(str) {
+                    if (str.length == 0) {
+                        document.getElementById("txtHint").innerHTML = "";
+                        return;
+                    } else {
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("txtHint").innerHTML = this.responseText;
+                        }
+                        };
+                        xmlhttp.open("GET", "gethint.php?q=" + str, true);
+                        xmlhttp.send();
+                    }
+                }
+                </script>
+
                 <?php
                     use App\Models\Invoice;
                     use App\Models\Order;
@@ -18,6 +37,7 @@
                     $selectedBuyerName= "all";
                     $selectedInvoiceNumber = "all";
                     $selectedEAN = "all";
+
                     //dodawanie opcji select dla buyer
                     //pętla sprawdza czy jakaś wartość została już przedtem wybrana i nadaje jej 'selected', inaczej
                     //po każdej zmianie filtry sie restują i można wybrać tylko 1 filtr
@@ -75,23 +95,29 @@
             </div>
             <div>
                 <p>kod towaru</p>
-                <select name="towar" id="" onchange="this.form.submit()">
-                <option value="all"<?php if(isset($_GET['towar']) && $_GET['towar'] == "all") echo 'selected';?>>Wszystkie</option>
                 <?php
                     //dodawanie opcji select dla ean
                     $kodTowaru = Item::select('EAN')->distinct()->get();
-                    $selectedValue = false;
+                    $zapisanaWartosc = false;
+                    //$selectedValue = false;
                     foreach($kodTowaru as $kod){
-                        if(isset($_GET['towar']) && urldecode($_GET['towar']) == $kod->EAN){
-                            $selectedValue = true;
+
+                        if(isset($_GET['towar']) && !empty($_GET['towar'])){
+                            $zapisanaWartosc = True;
                         }
-                        if($selectedValue){
+
+                        /*if($selectedValue){
                             echo '<option value='.urlencode($kod->EAN)." ".'selected'.'>'.$kod->EAN.'</option>';
                         }else{
                             echo '<option value='.urlencode($kod->EAN).'>'.$kod->EAN.'</option>';
                         }
-                        $selectedValue = false;
-                        
+                        $selectedValue = false;*/
+   
+                    }
+                    if($zapisanaWartosc){
+                        echo '<input type="text" name="towar" id="" value="'.urldecode($_GET['towar']).'"onchange="this.form.submit()" onkeyup="showHint(this.value)" autocomplete="off">';
+                    }else{
+                        echo '<input type="text" name="towar" id="" onchange="this.form.submit()" onkeyup="showHint(this.value)" autocomplete="off">';
                     }
                     if(isset($_GET["towar"])){
                             $selectedEAN = urldecode($_GET["towar"]);
@@ -100,7 +126,7 @@
                             }
                         }
                 ?>
-                </select>
+                <p>podpowiedzi: <span id="txtHint"></span></p>
             </div>
         </form>
     </div>
