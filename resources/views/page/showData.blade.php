@@ -18,7 +18,7 @@
                         return true;
                     }
                 </script>
-                
+
                 <script>
                 function showHint(str) {
                     if (str.length == 0) {
@@ -73,7 +73,6 @@
                     }
                 ?>
                 </select>
-                <p></p>
             </div>
             <div>
                 <p>Nr faktury</p>
@@ -103,10 +102,9 @@
                         }
                 ?>
                 </select>
-                <p></p>
             </div>
             <div>
-                <p>Kod towaru</p>
+                <p>kod towaru</p>
                 <?php
                     //dodawanie opcji select dla ean
                     $kodTowaru = Item::select('EAN')->distinct()->get();
@@ -138,7 +136,7 @@
                             }
                         }
                 ?>
-                <p>Podpowiedzi: <span id="txtHint">brak</span></p>
+                <p>podpowiedzi: <span id="txtHint"></span></p>
             </div>
         </form>
     </div>
