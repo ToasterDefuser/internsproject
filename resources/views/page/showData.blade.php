@@ -73,6 +73,7 @@
                     }
                 ?>
                 </select>
+                <p></p>
             </div>
             <div>
                 <p>Nr faktury</p>
@@ -102,9 +103,10 @@
                         }
                 ?>
                 </select>
+                <p></p>
             </div>
-            <div>
-                <p>kod towaru</p>
+            <div style="width: 300px;">
+                <p>Kod towaru</p>
                 <?php
                     //dodawanie opcji select dla ean
                     $kodTowaru = Item::select('EAN')->distinct()->get();
@@ -125,9 +127,9 @@
    
                     }
                     if($zapisanaWartosc){
-                        echo '<input type="text" name="towar" id="" value="'.urldecode($_GET['towar']).'"onchange="submitEnter(event)" onkeyup="showHint(this.value)" autocomplete="off">';
+                        echo '<input type="text" name="towar" id="kod_towaru" value="'.urldecode($_GET['towar']).'"onchange="submitEnter(event)" onkeyup="showHint(this.value)" autocomplete="off">';
                     }else{
-                        echo '<input type="text" name="towar" id="" onchange="submitEnter(event)" onkeyup="showHint(this.value)" autocomplete="off">';
+                        echo '<input type="text" name="towar" id="kod_towaru" onchange="submitEnter(event)" onkeyup="showHint(this.value)" autocomplete="off">';
                     }
                     if(isset($_GET["towar"])){
                             $selectedEAN = urldecode($_GET["towar"]);
@@ -136,7 +138,7 @@
                             }
                         }
                 ?>
-                <p>podpowiedzi: <span id="txtHint"></span></p>
+                <p>Podpowiedzi: <span id="txtHint">brak</span></p>
             </div>
         </form>
     </div>

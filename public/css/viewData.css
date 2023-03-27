@@ -83,6 +83,7 @@ table td {
     border-radius: 5px 5px 5px 5px;
     width: 138px;
     height: 38px;
+    font-size: 15px;
   }
   td:last-child{
     cursor: pointer;
