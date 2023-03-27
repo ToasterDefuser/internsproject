@@ -3,12 +3,22 @@
    <div class="table_div">
     <div class="filters">
         <h4>Filtry:</h4>
-        <form method="GET" action="" class="filer_form">
+        <form method="GET" id="formularz"action="" class="filer_form">
             <div>
                 <p>Akronim dostawcy</p>
                 <select name="wartosci" id="" onchange="this.form.submit()">
                 <option value="all"<?php if(isset($_GET['wartosci']) && $_GET['wartosci'] == "all") echo 'selected';?>>Wszystkie</option>
 
+                <script>
+                    function submitEnter(event){
+                        if(event.key === "Enter"){
+                            document.getElementById("formularz").submit();
+                            return false;
+                        }
+                        return true;
+                    }
+                </script>
+                
                 <script>
                 function showHint(str) {
                     if (str.length == 0) {
@@ -117,9 +127,9 @@
    
                     }
                     if($zapisanaWartosc){
-                        echo '<input type="text" name="towar" id="kod_towaru" value="'.urldecode($_GET['towar']).'"onchange="this.form.submit()" onkeyup="showHint(this.value)" autocomplete="off">';
+                        echo '<input type="text" name="towar" id="" value="'.urldecode($_GET['towar']).'"onchange="submitEnter(event)" onkeyup="showHint(this.value)" autocomplete="off">';
                     }else{
-                        echo '<input type="text" name="towar" id="kod_towaru" onchange="this.form.submit()" onkeyup="showHint(this.value)" autocomplete="off">';
+                        echo '<input type="text" name="towar" id="" onchange="submitEnter(event)" onkeyup="showHint(this.value)" autocomplete="off">';
                     }
                     if(isset($_GET["towar"])){
                             $selectedEAN = urldecode($_GET["towar"]);
