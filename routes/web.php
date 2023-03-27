@@ -12,6 +12,7 @@ use App\HTTP\Controllers\LogoutController;
 use App\HTTP\Controllers\PdfController;
 use App\HTTP\Controllers\RegisterController;
 use App\HTTP\Controllers\LoginController;
+use App\HTTP\Controllers\HintController;
 
 // User zalogowany
 Route::middleware([AuthMiddleware::class])->group(function () {
@@ -26,6 +27,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::post('/xml', ImportXmlController::class);
     Route::get('/logout', LogoutController::class);
     Route::post('/pdf', PdfController::class);
+    Route::get("/getHint", HintController::class);
 });
 
 // User niezalogowany
