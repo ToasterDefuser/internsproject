@@ -67,12 +67,22 @@ table td {
     flex-direction: column;
   }
 
-  select{
+  select {
     padding: 5px;
     width: 150px;
     height: 50px;
     border: 1px solid lightgray;
     border-radius: 5px 5px 5px 5px;
+  }
+
+  #kod_towaru{
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    border: 1px solid lightgray;
+    border-radius: 5px 5px 5px 5px;
+    width: 138px;
+    height: 38px;
   }
   td:last-child{
     cursor: pointer;
