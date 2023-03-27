@@ -18,8 +18,6 @@
        </form>
     </div>
    <div id="textAreaDiv"></div>
-    
-   </textarea>
 </div>
 <script>
     // funkcja formatująca plik JSON
