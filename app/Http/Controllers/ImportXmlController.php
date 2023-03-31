@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Validators\XmlValidator;
 use App\Repositories\ImportData;
 

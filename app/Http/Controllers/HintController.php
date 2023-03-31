@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ItemRepository;
-use App\Models\Item;
 
 class HintController extends Controller
 {

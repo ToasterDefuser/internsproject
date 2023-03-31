@@ -9,14 +9,6 @@ use App\Repositories\InvoiceRepository;
 use App\Repositories\ItemRepository;
 use PDF;
 
-// models
-use App\Models\Invoice;
-use App\Models\Order;
-use App\Models\Delivery;
-use App\Models\Seller;
-use App\Models\Buyer;
-use App\Models\Item;
-
 class ViewDataController extends Controller
 {
 
@@ -28,7 +20,6 @@ class ViewDataController extends Controller
             - nazwy zmiennych
 
         */
-
 
         $buyerName = $request->input('wartosci') ?? "all";
         $buyerName = preg_replace('/\+/', " ", $buyerName);
