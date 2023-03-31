@@ -53,7 +53,7 @@ class ViewDataController extends Controller
             return view('page/viewData', $viewData);
         }
 
-        $invoices = Invoice::with('summary', 'buyer', 'order','items');
+        $invoices = $invoiceRepo->getInvoicesWithAllRel();
 
         // 1
         if($buyerName !== "all"){

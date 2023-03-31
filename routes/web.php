@@ -8,43 +8,44 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\HomeMiddleware;
 
 // Controllers
-use App\HTTP\Controllers\ImportXmlController;
-use App\HTTP\Controllers\LogoutController;
 use App\HTTP\Controllers\PdfController;
-use App\HTTP\Controllers\RegisterController;
-use App\HTTP\Controllers\LoginController;
 use App\HTTP\Controllers\HintController;
 use App\HTTP\Controllers\ViewDataController;
+//use App\HTTP\Controllers\ImportXmlController;
+//use App\HTTP\Controllers\AuthController;
+
+
 
 // User zalogowany
 Route::middleware([AuthMiddleware::class])->group(function () {
-    Route::get('/import', function () {
-        return view('page/import');
-    })->name('import');
+    // PATH
+    $importXmlControllerPath = "App\HTTP\Controllers\ImportXmlController";
 
-    Route::match(array('POST', 'GET'), '/view', ViewDataController::class)->name('view');
-    
-    Route::post('/xml', ImportXmlController::class);
-    Route::get('/logout', LogoutController::class);
-    Route::post('/pdf', PdfController::class);
+    // GET
+    Route::get('/import', $importXmlControllerPath."@view")->name('import');
+    Route::get('/logout', "AuthController@LogoutUser");
     Route::get("/getHint", HintController::class);
+    
+    // POST
+    Route::post('/xml', $importXmlControllerPath."@import");
+    Route::get('/pdf', PdfController::class);
+    
+    // MIX
+    Route::match(array('POST', 'GET'), '/view', ViewDataController::class)->name('view');
 });
 
 // User niezalogowany
 Route::middleware([HomeMiddleware::class])->group(function () {
-    Route::get('/', function () {
-        return view('page/home');
-    })->name('home');
-    
-    Route::get('/register', function () {
-        return view('page/register');
-    })->name('register');
+    //PATH
+    $authControllerPath = "App\HTTP\Controllers\AuthController";
 
-    Route::get('/login', function () {
-        return view('page/login');
-    })->name('login');
+    // GET
+    Route::get('/', $authControllerPath."@ViewHomePage")->name('home');
+    Route::get('/register', $authControllerPath."@ViewRegisterForm")->name('register');
+    Route::get('/login', $authControllerPath."@ViewLoginForm")->name('login');
 
-    Route::post('/RegisterController', RegisterController::class);
-    Route::post('/LoginController', LoginController::class);
+    // POST
+    Route::post('/RegisterController', $authControllerPath."@RegisterUser");
+    Route::post('/LoginController', $authControllerPath."@LoginUser");
 });
 

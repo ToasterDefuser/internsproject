@@ -6,8 +6,11 @@ use App\Validators\XmlValidator;
 use App\Repositories\ImportData;
 
 class ImportXmlController extends Controller
-{
-    public function __invoke(Request $request){
+{   
+    public function view(){
+        return view('page/import');
+    }
+    public function import(Request $request){
 
         // sprawdzenie czy przesłano plik w formularzu
         if(null === $xml_file = $request->file("xml_file")){

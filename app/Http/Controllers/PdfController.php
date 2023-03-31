@@ -14,7 +14,9 @@ class PdfController extends Controller
 
         $invoiceRepo = new InvoiceRepository;
         $invoice = $invoiceRepo->getInvoiceById($invoice_id);
-
+        if($invoice === null){
+            return redirect()->route('view'); 
+        }
         $pdf = PDF::loadView('pdf', compact('invoice'));
         return $pdf->stream('pdf_file.pdf');
         
