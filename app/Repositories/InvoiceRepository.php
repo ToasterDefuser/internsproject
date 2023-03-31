@@ -18,5 +18,8 @@ class InvoiceRepository
     {
         return Invoice::find($id);
     }
+    public function getInvoicesWithAllRel(){
+        return Invoice::with('summary', 'buyer', 'order','items');
+    }
 }
 

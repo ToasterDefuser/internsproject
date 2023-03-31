@@ -8,9 +8,6 @@ class XmlValidator
     {
         $plik = simplexml_load_file($path);
         
-        //walidacja
-        $validFile = true;
-        
         // sprawdzenie czy plik zawiera linie "Invoice-Lines"
         if(!isset($plik->{"Invoice-Lines"})){
             return 'Brak lini Invoice-Lines w pliku';
@@ -37,9 +34,10 @@ class XmlValidator
         //taxAmount
         $totalTaxAmount = (float)$plik->{"Invoice-Summary"}->TotalTaxAmount;
 
-        if($totalLines !== $invoiceLines || $SumNetAmount !== $totalNetAmount || $totalTaxAmount !== $SumTaxAmount){
-            $validFile = false;
-        }
+        if($totalLines !== $invoiceLines) return false;
+        if($SumNetAmount !== $totalNetAmount) return false;
+        if($totalTaxAmount !== $SumTaxAmount) return false;
+
         /*Total Gross - if statement powyzej sprawdza czy suma net amount i suma tax amount jest poprawna,
         zamiast robić kolejną pętlę która sumuje wartości i porównuje z totalGrossAmount, szybciej jest zwykle
         porównać czy suma totalNet i totalTax jest równa totalGross, jeżeli występuje błąd w totalTax lub TotalNet
@@ -48,16 +46,16 @@ class XmlValidator
 
         $totalGrossAmount = (float)$plik->{"Invoice-Summary"}->TotalGrossAmount;
         $sum = $totalNetAmount + $totalTaxAmount;
-        $SumarryGrossAmount = (float)$plik->{"Invoice-Summary"}->{"Tax-Summary"}->{"Tax-Summary-Line"}->GrossAmount;
+        $SummaryGrossAmount = (float)$plik->{"Invoice-Summary"}->{"Tax-Summary"}->{"Tax-Summary-Line"}->GrossAmount;
         $TaxableBasis = (float)$plik->{"Invoice-Summary"}->{"Tax-Summary"}->{"Tax-Summary-Line"}->TaxableBasis;
         $TotalTaxableBasis = (float)$plik->{"Invoice-Summary"}->TotalTaxableBasis;
         
 
         //floating point precision
-        if(round($sum, 2) != round($totalGrossAmount, 2) || round($totalGrossAmount,2) != round($SumarryGrossAmount,2) || round($TaxableBasis,2) != round($TotalTaxableBasis,2)){
-            $validFile = false;
-        }
+        if(round($sum, 2) != round($totalGrossAmount, 2)) return false;
+        if(round($totalGrossAmount,2) != round($SummaryGrossAmount,2)) return false;
+        if(round($TaxableBasis,2) != round($TotalTaxableBasis,2)) return false;
 
-        return $validFile;
+        return true;
     }
 }
