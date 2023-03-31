@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('summaries', function (Blueprint $table) {
-            $table->id();
+            $table->id()->index();
             $table->string('TotalLines');
             $table->string('TotalNetAmount');
             $table->string('TotalTaxableBasis');

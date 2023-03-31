@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->string('ILN');
+            $table->string('ILN')->index();
             $table->string('TaxID');
             $table->string('AccountNumber');
             $table->string('CodeByBuyer');

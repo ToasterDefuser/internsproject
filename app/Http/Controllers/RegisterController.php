@@ -15,7 +15,7 @@ class RegisterController extends Controller
 
         $user = User::where('Username', $name)->first();
         if($user){
-            //  znaleziono usera o takiej naziwe
+            //  znaleziono usera o takiej nazwie
             return redirect()->route("register")->with("alert", "Nazwa jest zajęta");
         }
 

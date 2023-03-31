@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
+use App\Repositories\BuyerRepository;
+use App\Repositories\InvoiceRepository;
+use App\Repositories\ItemRepository;
 use PDF;
 
 // models
@@ -18,6 +19,7 @@ use App\Models\Item;
 
 class ViewDataController extends Controller
 {
+
     public function __invoke(Request $request){
         
         /*
@@ -34,9 +36,14 @@ class ViewDataController extends Controller
         $kodTowaru = $request->input('kodTowaru') ?? null;
         
         
-        $allBuyers = Buyer::select('Name')->distinct()->get();
-        $allInvoiceNumers = Invoice::select('InvoiceNumber')->distinct()->get();
-        $allItems = Item::select('EAN')->distinct()->get();
+        $buyerRepo = new BuyerRepository;
+        $allBuyers = $buyerRepo->getAllUniqueNames();
+
+        $invoiceRepo = new InvoiceRepository;
+        $allInvoiceNumers = $invoiceRepo->getAllUniqueInvoiceNumbers();
+
+        $itemRepo = new ItemRepository;
+        $allItems = $itemRepo->getAllUniqueEAN();
 
         $viewData = [
             'selectedbuyer' => $buyerName,
@@ -51,7 +58,7 @@ class ViewDataController extends Controller
 
         if($buyerName === "all" && $invoiceNumber === "all" && $kodTowaru === "all"){
             //return Invoice::all();
-            $viewData['invoices'] = Invoice::all();
+            $viewData['invoices'] = $invoiceRepo->getAllInvoices();
             return view('page/viewData', $viewData);
         }
 
