@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('LineNumber');
-            $table->string('EAN');
+            $table->string('EAN')->index();
             $table->string('SupplierItemCode');
             $table->string('ItemDescription');
             $table->string('ItemType');

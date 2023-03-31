@@ -16,7 +16,7 @@ class LoginController extends Controller
         $user = User::where('Username', $name)->first();
 
         if(!$user){
-            // nie znaleziono usera o takiej naziwe
+            // nie znaleziono usera o takiej nazwie
             return redirect()->route("login")->with("alert", "Niepoprawna nazwa");
         }
         if(!Hash::check($pwd, $user->Password)){

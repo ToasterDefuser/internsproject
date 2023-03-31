@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('BuyerOrderNumber');
+            $table->string('BuyerOrderNumber')->index();
             $table->string('BuyerOrderDate');
         });
     }
