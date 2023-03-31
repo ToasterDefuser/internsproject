@@ -28,7 +28,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     
     // POST
     Route::post('/xml', $importXmlControllerPath."@import");
-    Route::post('/pdf', PdfController::class);
+    Route::get('/pdf', PdfController::class);
     
     // MIX
     Route::match(array('POST', 'GET'), '/view', ViewDataController::class)->name('view');

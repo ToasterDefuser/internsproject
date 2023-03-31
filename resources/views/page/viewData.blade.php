@@ -80,7 +80,7 @@
             <td>{{ $invoice->summary->TotalGrossAmount }}</td>
             <td>{{ $invoice->order->BuyerOrderNumber }}</td>
             <td>
-                Pobierz
+                <a href="/pdf?invoiceId={{ $invoice->id }}" style="color: black">Pobierz</a>
             </td>
         </tr>
         @endforeach
