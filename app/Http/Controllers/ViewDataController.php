@@ -28,23 +28,37 @@ class ViewDataController extends Controller
         */
 
 
-        $buyerName = $request->input('akronim') ?? "ALL";
-        $invoiceNumber = $request->input('nrFaktury') ?? "ALL";
-        $kodTowaru = $request->input('kodTowaru') ?? "ALL";
+        $buyerName = $request->input('wartosci') ?? "all";
+        $buyerName = preg_replace('/\+/', " ", $buyerName);
+        $invoiceNumber = $request->input('nrFaktury') ?? "all";
+        $kodTowaru = $request->input('kodTowaru') ?? null;
         
         
-        $allBuyers = Buyer::all();
+        $allBuyers = Buyer::select('Name')->distinct()->get();
         $allInvoiceNumers = Invoice::select('InvoiceNumber')->distinct()->get();
+        $allItems = Item::select('EAN')->distinct()->get();
 
-        if($buyerName === "ALL" && $invoiceNumber === "ALL" && $kodTowaru === "ALL"){
+        $viewData = [
+            'selectedbuyer' => $buyerName,
+            'allbuyers' =>  $allBuyers,
+
+            'selectedinvoicenumer' => $invoiceNumber,
+            'allInvoiceNumers' => $allInvoiceNumers,
+
+            'selectedItem' => $kodTowaru,
+            'allItems' => $allItems,
+        ];
+
+        if($buyerName === "all" && $invoiceNumber === "all" && $kodTowaru === "all"){
             //return Invoice::all();
-            return view('page/viewData', ['invoices' => Invoice::all()]);
+            $viewData['invoices'] = Invoice::all();
+            return view('page/viewData', $viewData);
         }
 
         $invoices = Invoice::with('summary', 'buyer', 'order','items');
 
         // 1
-        if($buyerName !== "ALL"){
+        if($buyerName !== "all"){
             $invoices->whereHas('buyer', function($query) use($buyerName) {
                 $query->where('Name', '=', $buyerName);
             });
@@ -52,14 +66,14 @@ class ViewDataController extends Controller
 
 
         // 2
-        if($invoiceNumber !== "ALL"){
+        if($invoiceNumber !== "all"){
             $invoices->where("InvoiceNumber", "=", $invoiceNumber);
         }
 
 
 
         // 3
-        if($kodTowaru !== "ALL"){
+        if($kodTowaru !== null){
             $newInvoices = [];
             foreach($invoices->get() as $invoice){
                 foreach($invoice->items as $item){
@@ -69,10 +83,16 @@ class ViewDataController extends Controller
                 }
             }
             //return $newInvoices;
-            return view('page/viewData', ['invoices' => $newInvoices]);
+            $viewData['invoices'] = $newInvoices;
+            return view('page/viewData', $viewData);
         }
 
         //return $invoices->get();
-        return view('page/viewData', ['invoices' => $invoices->get()]);
+
+
+        $viewData['invoices'] = $invoices->get();
+        return view('page/viewData', $viewData);
+       
+        //return $buyerName;
     }
 }

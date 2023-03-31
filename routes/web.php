@@ -21,12 +21,8 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/import', function () {
         return view('page/import');
     })->name('import');
-    
-    Route::get('/view', function () {
-        return view('page/showData');
-    })->name('view');
 
-    Route::get('/view2', ViewDataController::class);
+    Route::match(array('POST', 'GET'), '/view', ViewDataController::class);
     
     Route::post('/xml', ImportXmlController::class);
     Route::get('/logout', LogoutController::class);
